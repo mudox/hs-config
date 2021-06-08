@@ -7,6 +7,7 @@ require 'lib.reload'
 local bind = require 'lib.bind'
 
 -- Inspect value in console
+---@diagnostic disable-next-line: lowercase-global
 d = hs.inspect
 
 -- Toggle console window
@@ -20,14 +21,17 @@ hs.alert.defaultStyle.radius = 4
 hs.alert.defaultStyle.strokeWidth = 0.5
 
 -- Root chooser
-RootChooser = require('rootchooser')
+---@diagnostic disable-next-line: lowercase-global
+rootChooser = require('rootchooser')
 bind.alt('r', function ()
-  RootChooser:show()
+  rootChooser:show()
 end)
 
+-- App shortcuts
+require 'lib.appshortcuts'
 
-require 'lib.hotkey.hotkey'
-require 'lib.hotkey.app'
+-- Inspect frontmost app
+require 'lib.inspectapp'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
