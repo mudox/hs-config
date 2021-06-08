@@ -8,15 +8,14 @@ local reloadConfig = {
   end
 }
 
-
--- Assemble Module
+-- Module
 
 local actions = {}
 local m = hs.chooser.new(function(item)
+  if not item then return end
   actions[item.id]()
 end)
 
--- Install choose items
 local function install(items)
   for _, item in ipairs(items) do
     item.id = hs.host.uuid()
@@ -30,10 +29,12 @@ local function install(items)
   m:choices(items)
 end
 
+-- Install chooser items here!
 install {
   reloadConfig,
   require('lib.airpods').toggleAirPods,
   require('lib.airpods').showAirPodsStatus,
+  require('lib.layout').layoutFirefoxAndCode,
 }
 
 m:searchSubText(true)
