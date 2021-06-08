@@ -8,25 +8,6 @@ local reloadConfig = {
   end
 }
 
-local toggleAirPods = {
-  text = 'Toggle AirPods',
-  subText = 'Connect / Disconnect NBN AirPods',
-  image = hs.image.imageFromName('NSBluetoothTemplate'),
-
-  action = function()
-    require('lib.airpods').toggle()
-  end
-}
-
-local showAirPodsStatus = {
-  text = 'Show AirPods Status',
-  subText = 'Show if AirPods is connected or not',
-  image = hs.image.imageFromName('NSBluetoothTemplate'),
-
-  action = function()
-    require('lib.airpods').status()
-  end
-}
 
 -- Assemble Module
 
@@ -51,8 +32,8 @@ end
 
 install {
   reloadConfig,
-  toggleAirPods,
-  showAirPodsStatus,
+  require('lib.airpods').toggleAirPods,
+  require('lib.airpods').showAirPodsStatus,
 }
 
 m:searchSubText(true)
