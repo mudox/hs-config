@@ -35,6 +35,8 @@ install {
   require('lib.airpods').toggleAirPods,
   require('lib.airpods').showAirPodsStatus,
   require('lib.layout').layoutFirefoxAndCode,
+  require('lib.macos').itemSleep,
+  require('lib.macos').itemDisplaySleep,
 }
 
 m:searchSubText(true)
