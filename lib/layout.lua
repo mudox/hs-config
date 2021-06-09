@@ -1,19 +1,4 @@
-local g = require('hs.geometry')
-local mainScreenFrame = hs.screen.mainScreen():frame()
-local spacing = 12
-
--- left half with spacing
-local left50 = g.copy(mainScreenFrame)
-left50.xy = g { spacing, spacing }
-left50.w = mainScreenFrame.w / 2 - spacing * 1.5
-left50.y2 = mainScreenFrame.y2 - spacing
-
--- right half with spacing
-local right50 = g.copy(mainScreenFrame)
-right50.x = mainScreenFrame.w / 2 + spacing * 0.5
-right50.y = spacing
-right50.x2 = mainScreenFrame.x2 - spacing
-right50.y2 = mainScreenFrame.y2 - spacing
+local c = require('lib.cell')
 
 -- chooseer item
 local layoutFirefoxAndCode = {
@@ -35,14 +20,16 @@ local layoutFirefoxAndCode = {
 
         local firefox = {
             'Firefox', nil, nil,
-            nil, nil, left50
+            -- hs.layout.left50, nil, nil
+            nil, nil, c.left50
         }
 
         local code = {
             'Code', nil, nil,
-            nil, nil, right50
+            -- hs.layout.right50, nil, nil
+            nil, nil, c.right50
         }
-        
+
         hs.layout.apply { firefox, code }
     end
 }
