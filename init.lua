@@ -13,6 +13,12 @@ d = hs.inspect
 -- Toggle console window
 bind.altShift('x', hs.toggleConsole)
 
+-- Grid mode
+require('lib.grid')
+bind.altShift('3', function()
+   hs.grid.toggleShow(nil, true) 
+end)
+
 -- Disable window animation
 hs.window.animationDuration = 0
 
