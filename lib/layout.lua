@@ -1,44 +1,60 @@
-local c = require('lib.cell')
+local bind = require('lib.bind')
+local cell = require('lib.cell')
+local fn = hs.fnutils
 
--- chooseer item
-local layoutFirefoxAndCode = {
+--- Hide all other windows
+local function onlyShow(...)
+  local names = {...}
+  fn.each(hs.application.runningApplications(), function(app)
+    if fn.contains(names, app:name()) then
+      app:unhide()
+    else
+      app:hide()
+    end
+  end)
+end
+
+-- Build table for `hs.layout.apply`
+
+local function spec(name, rect)
+  return {name, nil, nil, nil, nil, rect}
+end
+
+-- Move windows
+bind.ctrlAlt('h', function()
+  local win = hs.window.frontmostWindow()
+  cell.grid12:moveTo(win, 1, 1)
+end)
+
+bind.ctrlAlt('l', function()
+  local win = hs.window.frontmostWindow()
+  cell.grid12:moveTo(win, 1, 2)
+end)
+
+bind.ctrlAlt('m', function()
+  local win = hs.window.frontmostWindow()
+  cell.grid11:moveTo(win, 1, 1)
+end)
+
+-- Chooseer items
+
+local chooserItems = {
+  layoutFirefoxAndCode = {
     text = 'Layout: Firefox - VSCode',
     subText = 'Firefox (left50) - VSCode (right50)',
 
     action = function()
-        -- clean screen
+      onlyShow('Firefox', 'Code')
 
-        for _, app in ipairs(hs.application.runningApplications()) do
-            if app:name() == 'Firefox' or app:name() == 'Code' then
-                app:unhide()
-            else
-                app:hide()
-            end
-        end
+      -- layout
+      local firefox = spec('Firefox', cell.grid12:cell(1, 1))
+      local code = spec('Code', cell.grid12:cell(1, 2))
 
-        -- layout
-
-        local firefox = {
-            'Firefox', nil, nil,
-            -- hs.layout.left50, nil, nil
-            nil, nil, c.left50
-        }
-
-        local code = {
-            'Code', nil, nil,
-            -- hs.layout.right50, nil, nil
-            nil, nil, c.right50
-        }
-
-        hs.layout.apply { firefox, code }
+      hs.layout.apply {firefox, code}
     end
+  }
 }
-
 
 -- Assemble module
 
-local m = {
-    layoutFirefoxAndCode = layoutFirefoxAndCode
-}
-
-return m
+return {chooserItems = chooserItems}
