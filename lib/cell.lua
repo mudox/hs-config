@@ -1,51 +1,60 @@
 local g = require('hs.geometry')
 local screen = hs.screen.mainScreen():frame()
-local spacing = 10
 
-local half_x = screen.w / 2
-local half_y = screen.h / 2
-local half_w = half_x - spacing * 1.5
-local half_h = half_y - spacing * 1.5
-local size25 = g {w=half_w, h=half_h}
+local Grid = {}
 
--- left half with spacing
-local left50 = g.copy(screen)
-left50.xy = g { spacing, spacing }
-left50.w = half_w
-left50.y2 = screen.y2 - spacing
+function Grid:new(rows, cols, spacing)
+  local o = {rows = rows, cols = cols, spacing = spacing}
 
--- right half with spacing
-local right50 = g.copy(screen)
-right50.x = half_x + spacing * 0.5
-right50.y = spacing
-right50.x2 = screen.x2 - spacing
-right50.y2 = screen.y2 - spacing
+  setmetatable(o, self)
+  self.__index = self
 
--- top left
-local topLeft25 = g.copy(screen)
-topLeft25.xy = g { spacing, spacing }
-topLeft25.wh = size25
+  return o
+end
 
--- bottom left
-local bottomLeft25 = g.copy(topLeft25)
-bottomLeft25.y = half_y + spacing * 0.5
+function Grid:cell(row, col)
+  assert(row <= self.rows, 'invalid `row` value')
+  assert(col <= self.cols, 'invalid `col` value')
 
--- top right
-local topRight25 = g.copy(topLeft25)
-topRight25.x = half_x + spacing * 0.5
+  local w = (screen.w - self.spacing * (self.cols + 1)) / self.cols
+  local h = (screen.h - self.spacing * (self.rows + 1)) / self.rows
 
--- bottom right
-local bottomRight25 = g.copy(bottomLeft25)
-bottomRight25.x = half_x + spacing * 0.5
+  return g {
+    x = self.spacing + (col - 1) * (self.spacing + w),
+    y = self.spacing + (row - 1) * (self.spacing + h),
+    w = w,
+    h = h
+  }
+end
 
--- Assemble module
+function Grid:cells()
+  local row = 0
+  local col = 0
+
+  return function()
+    if row < self.rows then
+      row = row + 1
+    elseif col < self.cols then
+      col = col + 1
+      row = 1
+    else
+      return
+    end
+
+    return self:cell(row, col)
+  end
+end
+
+function Grid:moveTo(win, row, col)
+  win:setFrame(self:cell(row, col))
+end
+
+local spacing = 12
 
 return {
-    left50 = left50,
-    right50 = right50,
-
-    topLeft25 = topLeft25,
-    topRight25 = topRight25,
-    bottomLeft25 = bottomLeft25,
-    bottomRight25 = bottomRight25,
+  grid11 = Grid:new(1, 1, spacing), -- fullscreen with margin
+  grid12 = Grid:new(1, 2, spacing),
+  grid22 = Grid:new(2, 2, spacing),
+  grid23 = Grid:new(2, 3, spacing),
+  grid33 = Grid:new(3, 3, spacing)
 }
