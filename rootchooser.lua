@@ -5,14 +5,17 @@ local reloadConfig = {
 
   action = function()
     require('lib.reload').reload()
-  end
+  end,
+  info = 'mudox'
 }
 
 -- Module
 
 local actions = {}
 local m = hs.chooser.new(function(item)
-  if not item then return end
+  if not item then
+    return
+  end
   actions[item.id]()
 end)
 
@@ -30,13 +33,24 @@ local function install(items)
 end
 
 -- Install chooser items here!
+local mac = require('lib.macos').chooserItems
+local airpods = require('lib.airpods').chooserItems
+local layout = require('lib.layout').chooserItems
+
 install {
   reloadConfig,
-  require('lib.airpods').toggleAirPods,
-  require('lib.airpods').showAirPodsStatus,
-  require('lib.layout').layoutFirefoxAndCode,
-  require('lib.macos').itemSleep,
-  require('lib.macos').itemDisplaySleep,
+
+  -- airpods
+  airpods.toggle,
+  airpods.check,
+
+  -- layout
+  layout.layoutFirefoxAndCode,
+
+  -- mac
+  mac.sleep,
+  mac.displaySleep,
+  mac.lock
 }
 
 m:searchSubText(true)
