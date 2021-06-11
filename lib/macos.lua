@@ -20,8 +20,18 @@ return {
   lockScreen = lockScreen,
 
   chooserItems = {
-    sleep = {text = 'Sleep', action = sleep},
-    displayScreen = {text = 'Display Sleep', action = dispalySleep},
-    lockScreen = {text = 'Lock Screen', action = lockScreen}
-  }
+    sleep = {text = 'Sleep', subText = 'Bye Bye', action = sleep},
+
+    displaySleep = {
+      text = 'Display Sleep',
+      subText = 'Bye Bye',
+      action = dispalySleep,
+    },
+
+    lockScreen = {
+      text = 'Lock Screen',
+      subText = 'Bye Bye',
+      action = lockScreen,
+    },
+  },
 }
