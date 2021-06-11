@@ -6,7 +6,7 @@ require 'lib.reload'
 local bind = require 'lib.bind'
 
 -- Disable window animation
--- hs.window.animationDuration = 0
+hs.window.animationDuration = 0
 
 -- Inspect value in console
 ---@diagnostic disable-next-line: lowercase-global
@@ -24,7 +24,7 @@ hs.alert.defaultStyle.strokeWidth = 0.5
 
 -- Root chooser
 ---@diagnostic disable-next-line: lowercase-global
-rootChooser = require('rootchooser')
+rootChooser = require('lib.rootchooser')
 bind.alt('r', function()
   rootChooser:show()
 end)

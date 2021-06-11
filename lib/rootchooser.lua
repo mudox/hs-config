@@ -1,3 +1,9 @@
+hs.chooser.globalCallback = function(chooser, event)
+  chooser:query(nil)
+end
+
+-- Item: reload config
+
 local reloadConfig = {
   text = 'Reload Hammerspoon Configuration',
   subText = 'Console content will be cleared first',
@@ -6,7 +12,7 @@ local reloadConfig = {
   action = function()
     require('lib.reload').reload()
   end,
-  info = 'mudox'
+  info = 'mudox',
 }
 
 -- Module
@@ -34,15 +40,19 @@ end
 
 -- Install chooser items here!
 local mac = require('lib.macos').chooserItems
-local airpods = require('lib.airpods').chooserItems
+local bluetooth = require('lib.bluetooth').chooserItems
 local layout = require('lib.layout').chooserItems
+local images = require('lib.imageschooser').chooserItems
 
 install {
   reloadConfig,
 
-  -- airpods
-  airpods.toggle,
-  airpods.check,
+  -- bluetooth
+  bluetooth.checkAirPods,
+  bluetooth.toggleAirPods,
+
+  bluetooth.checkKeyboard,
+  bluetooth.toggleKeyboard,
 
   -- layout
   layout.layoutFirefoxAndCode,
@@ -50,9 +60,12 @@ install {
   -- mac
   mac.sleep,
   mac.displaySleep,
-  mac.lock
+  mac.lockScreen,
+
+  -- images
+  images.allImages,
 }
 
-m:searchSubText(true)
+m:searchSubText(true):width(26)
 
 return m
