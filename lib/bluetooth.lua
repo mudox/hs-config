@@ -12,7 +12,6 @@ end
 --- Check airpods connection status
 -- @return 'connected' or 'disconnected'
 local function status(id)
-  print(('sh %s status %s'):format(cmd, id))
   local output = hs.execute(('sh %s status %s'):format(cmd, id))
   return output:gsub('%s*$', '', 1)
 end

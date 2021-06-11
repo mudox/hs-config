@@ -16,7 +16,7 @@ d = hs.inspect
 bind.altShift('x', hs.toggleConsole)
 
 -- Grid mode
-require('lib.grid')
+require 'lib.grid'
 
 -- Alert default style
 hs.alert.defaultStyle.radius = 4
@@ -34,6 +34,9 @@ require 'lib.appshortcuts'
 
 -- Inspect frontmost app
 require 'lib.inspectapp'
+
+-- Sound
+require 'lib.sound'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')

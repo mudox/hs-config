@@ -17,7 +17,6 @@ local function collect_items()
   return hs.fnutils.imap(names, function(name)
     local icon = hs.image.imageFromName(name)
     if not icon then
-      print('invalid ' .. name)
       return nil
     end
 
