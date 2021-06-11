@@ -1,16 +1,18 @@
+local function lockScreen()
+  hs.caffeinate.lockScreen()
+end
+
 -- system often auto-wake up from this kind of sleep
 -- use `displaySleep` instead
 local function sleep()
+  lockScreen()
   hs.caffeinate.systemSleep()
   -- hs.execute([[pmset sleepnow]]) 
 end
 
 local function dispalySleep()
+  lockScreen()
   hs.execute([[pmset displaysleepnow]])
-end
-
-local function lockScreen()
-  hs.caffeinate.lockScreen()
 end
 
 -- Module
