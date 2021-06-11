@@ -33,7 +33,36 @@ end)
 
 bind.ctrlAlt('m', function()
   local win = hs.window.frontmostWindow()
+  if not win then
+    return
+  end
+
+  onlyShow(win:application():name())
   cell.grid11:moveTo(win, 1, 1)
+end)
+
+-- Sheet
+bind.ctrlAlt('-', function()
+  local s = hs.screen.mainScreen():frame()
+  local r = hs.screen.mainScreen():frame()
+  r.h = r.h - 200
+  r.w = math.ceil(r.h / 1.3)
+  r.center = s.center
+
+  local win = hs.window.frontmostWindow()
+  win:setFrame(r)
+end)
+
+-- Form
+bind.ctrlAlt('=', function()
+  local s = hs.screen.mainScreen():frame()
+  local r = hs.screen.mainScreen():frame()
+  r.h = r.h - 200
+  r.w = math.ceil(r.h * 1.3)
+  r.center = s.center
+
+  local win = hs.window.frontmostWindow()
+  win:setFrame(r)
 end)
 
 -- Chooseer items
@@ -51,8 +80,8 @@ local chooserItems = {
       local code = spec('Code', cell.grid12:cell(1, 2))
 
       hs.layout.apply {firefox, code}
-    end
-  }
+    end,
+  },
 }
 
 -- Assemble module
