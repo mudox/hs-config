@@ -23,7 +23,7 @@ function Grid:cell(row, col)
     x = self.spacing + (col - 1) * (self.spacing + w),
     y = self.spacing + (row - 1) * (self.spacing + h),
     w = w,
-    h = h
+    h = h,
   }
 end
 
@@ -56,5 +56,5 @@ return {
   grid12 = Grid:new(1, 2, spacing),
   grid22 = Grid:new(2, 2, spacing),
   grid23 = Grid:new(2, 3, spacing),
-  grid33 = Grid:new(3, 3, spacing)
+  grid33 = Grid:new(3, 3, spacing),
 }
