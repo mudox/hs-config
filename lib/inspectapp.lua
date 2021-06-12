@@ -1,27 +1,24 @@
-local bind = require('lib.bind')
+local log = hs.logger.new 'lib.inspectapp'
 
 -- Show information of the foregournd app
-bind.ctrlCmd(".", function()
+bx.ctrlCmd('.', function()
   hs.openConsole()
 
   local app = hs.application.frontmostApplication()
 
-  local info = string.format([[
-    Foreground Application:
-    App name:             %s
-    Bundle path:          %s
-    Bundle ID:            %s
-    PID:                  %s
-    IM source id:         %s
-    ]],
+  log.i([[
 
-    app:name(),
-    app:path(),
-    app:bundleID(),
-    app:pid(),
+  App name:             ${n}
+  Bundle path:          ${p}
+  Bundle ID:            ${id}
+  PID:                  ${pid}
+  IM source id:         ${im}
+  ]] % {
+    n = app:name(),
+    p = app:path(),
+    id = app:bundleID(),
+    pid = app:pid(),
+    im = hs.keycodes.currentSourceID(),
+  })
 
-    hs.keycodes.currentSourceID()
- )
-
-  print(info)
 end)

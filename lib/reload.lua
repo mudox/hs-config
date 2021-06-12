@@ -1,3 +1,5 @@
+local log = hs.logger.new 'lib.reload'
+
 local function reload()
   hs.console.clearConsole()
   hs.reload()
@@ -14,10 +16,10 @@ local function reloadConfigIfChanged(paths)
   end
 
   if doReload then
-    print('A lua config file changed, reload')
+    log.i 'A lua config file changed, reload'
     reload()
   else
-    print('No lua file changed, skip reloading')
+    log.i 'No lua file changed, skip reloading'
   end
 end
 
