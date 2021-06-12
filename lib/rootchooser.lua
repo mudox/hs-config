@@ -1,5 +1,9 @@
 hs.chooser.globalCallback = function(chooser, event)
   chooser:query(nil)
+
+  if event == 'willOpen' then
+    hs.closeConsole()
+  end
 end
 
 -- Item: reload config
