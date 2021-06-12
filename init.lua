@@ -1,33 +1,32 @@
 -- vim: fdm=marker
+require('lib.log')
+
+-- Extensions to Lua language
+require 'lib.lua'
+
 -- Reload Configuration
--- Pin it to fist line
 require 'lib.reload'
 
-local bind = require 'lib.bind'
+-- Globals
+bx = require 'lib.bind'
+fx = hs.fnutils
+d = hs.inspect
 
 -- Disable window animation
 hs.window.animationDuration = 0
 
--- Inspect value in console
----@diagnostic disable-next-line: lowercase-global
-d = hs.inspect
-
--- Toggle console window
-bind.altShift('x', hs.toggleConsole)
-
--- Grid mode
-require 'lib.grid'
-
 -- Alert default style
-hs.alert.defaultStyle.radius = 4
-hs.alert.defaultStyle.strokeWidth = 0.5
+require 'lib.alert'
 
 -- Root chooser
 ---@diagnostic disable-next-line: lowercase-global
 rootChooser = require('lib.rootchooser')
-bind.alt('r', function()
+bx.alt('r', function()
   rootChooser:show()
 end)
+
+-- Grid mode
+require 'lib.grid'
 
 -- App shortcuts
 require 'lib.appshortcuts'
@@ -38,5 +37,9 @@ require 'lib.inspectapp'
 -- Sound
 require 'lib.sound'
 
+-- Console
+require 'lib.console'
+
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
+
