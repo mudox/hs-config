@@ -1,6 +1,6 @@
 local au = hs.audiodevice
 
-local step = 10
+local step = 5
 
 local function outDevice()
   local d = au.current().device
@@ -21,7 +21,7 @@ local function volumeUp()
   local dev = outDevice()
   local vol = dev:volume()
   if vol < 100 then
-    vol = vol + 1
+    vol = vol + step
     dev:setVolume(vol)
   end
 
@@ -33,7 +33,7 @@ local function volumeDown()
   local dev = outDevice()
   local vol = dev:volume()
   if vol > 0 then
-    vol = vol - 1
+    vol = vol - step
     dev:setVolume(vol)
   end
 
