@@ -1,16 +1,20 @@
 local bind = require('lib.bind')
 local cell = require('lib.cell')
-local fn = hs.fnutils
 
 --- Hide all other windows
 local function onlyShow(...)
   local names = {...}
-  fn.each(hs.application.runningApplications(), function(app)
-    if fn.contains(names, app:name()) then
+
+  fx.each(hs.application.runningApplications(), function(app)
+    if fx.contains(names, app:name()) then
       app:unhide()
     else
       app:hide()
     end
+  end)
+
+  fx.each(names, function(name)
+    hs.application.launchOrFocus(name)
   end)
 end
 
@@ -18,6 +22,21 @@ end
 
 local function spec(name, rect)
   return {name, nil, nil, nil, nil, rect}
+end
+
+-- Layout functions
+
+--- grid 1x2
+-- @param left name of application in left pane
+-- @param right name of application in right pane
+local function g12(left, right)
+  onlyShow(left, right)
+
+  -- layout
+  local firefox = spec(left, cell.grid12:cell(1, 1))
+  local code = spec(right, cell.grid12:cell(1, 2))
+
+  hs.layout.apply {firefox, code}
 end
 
 -- Move windows
@@ -68,18 +87,20 @@ end)
 -- Chooseer items
 
 local chooserItems = {
-  layoutFirefoxAndCode = {
-    text = 'Layout: Firefox - VSCode',
+  g22FirefoxAndCode = {
+    text = 'Layout: Web & Editor',
     subText = 'Firefox (left50) - VSCode (right50)',
 
     action = function()
-      onlyShow('Firefox', 'Code')
+      g12('Firefox', 'Code')
+    end,
+  },
+  g22FirefoxAndNotion = {
+    text = 'Layout: Web & Note',
+    subText = 'Firefox (left50) - Notion (right50)',
 
-      -- layout
-      local firefox = spec('Firefox', cell.grid12:cell(1, 1))
-      local code = spec('Code', cell.grid12:cell(1, 2))
-
-      hs.layout.apply {firefox, code}
+    action = function()
+      g12('Firefox', 'Notion')
     end,
   },
 }
