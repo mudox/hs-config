@@ -42,4 +42,3 @@ require 'lib.console'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
-

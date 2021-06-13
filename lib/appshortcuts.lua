@@ -17,7 +17,7 @@ local appShortcuts = {
   --
   -- alt + key to other commonly used applications
   --
-  {alt, 'g', 'Google Chrome'},
+  -- {alt, 'g', 'Google Chrome'},
   {alt, 'd', 'Dictionary'},
   {alt, 'p', 'Proxyman'},
   {alt, 't', 'Tower'},
@@ -56,7 +56,6 @@ hs.fnutils.each(appShortcuts, function(shortcut)
   local name = shortcut[3]
   hs.hotkey.bind(combo, key, function()
     hs.alert(name, 1)
-    hs.application.enableSpotlightForNameSearches(true)
     hs.application.launchOrFocus(name)
   end)
 end)
