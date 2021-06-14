@@ -17,7 +17,7 @@ local appShortcuts = {
   --
   -- alt + key to other commonly used applications
   --
-  -- {alt, 'g', 'Google Chrome'},
+  {alt, 'g', 'Kitty'},
   {alt, 'd', 'Dictionary'},
   {alt, 'p', 'Proxyman'},
   {alt, 't', 'Tower'},
