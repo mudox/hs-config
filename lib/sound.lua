@@ -25,6 +25,9 @@ local function volumeUp()
 
   if vol < 100 then
     vol = vol + step
+    vol = 10 * math.ceil(vol / 10)
+    vol = math.min(100, vol)
+
     dev:setVolume(vol)
     tink:stop():play()
   end
@@ -39,6 +42,9 @@ local function volumeDown()
 
   if vol > 0 then
     vol = vol - step
+    vol = 10 * math.floor(vol / 10)
+    vol = math.max(0, vol)
+
     dev:setVolume(vol)
     tink:stop():play()
   end
