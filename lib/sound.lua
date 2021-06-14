@@ -17,12 +17,16 @@ local function round(n)
   return n % 1 >= 5 and math.ceil(n) or math.floor(n)
 end
 
+local tink = hs.sound.getByName('Tink')
+
 local function volumeUp()
   local dev = outDevice()
   local vol = dev:volume()
+
   if vol < 100 then
     vol = vol + step
     dev:setVolume(vol)
+    tink:stop():play()
   end
 
   hs.alert.closeSpecific(alertID)
@@ -32,9 +36,11 @@ end
 local function volumeDown()
   local dev = outDevice()
   local vol = dev:volume()
+
   if vol > 0 then
     vol = vol - step
     dev:setVolume(vol)
+    tink:stop():play()
   end
 
   hs.alert.closeSpecific(alertID)
