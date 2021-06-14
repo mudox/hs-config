@@ -1,6 +1,6 @@
 #!/user/bin/env bash
 
-# Manages bluetooth connectivity of AirPods
+# Manages bluetooth devices
 
 if [[ "$#" -ne 2 || ("$1" != "toggle" && "$1" != "status") ]]; then
   echo "Usage: bluetooth [toggle|status] 2"

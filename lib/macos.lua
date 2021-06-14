@@ -7,7 +7,7 @@ end
 local function sleep()
   lockScreen()
   hs.caffeinate.systemSleep()
-  -- hs.execute([[pmset sleepnow]]) 
+  -- hs.execute([[pmset sleepnow]])
 end
 
 local function dispalySleep()
@@ -22,17 +22,21 @@ return {
   lockScreen = lockScreen,
 
   chooserItems = {
-    sleep = {text = 'Sleep', subText = 'Bye Bye', action = sleep},
+    sleep = {
+      text = 'System Sleep',
+      subText = 'My re-wake again ...',
+      action = sleep,
+    },
 
     displaySleep = {
       text = 'Display Sleep',
-      subText = 'Bye Bye',
+      subText = 'May re-wake again ...',
       action = dispalySleep,
     },
 
     lockScreen = {
       text = 'Lock Screen',
-      subText = 'Bye Bye',
+      subText = 'Back to login interface',
       action = lockScreen,
     },
   },
