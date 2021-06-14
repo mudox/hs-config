@@ -46,7 +46,8 @@ end
 local mac = require('lib.macos').chooserItems
 local bluetooth = require('lib.bluetooth').chooserItems
 local layout = require('lib.layout').chooserItems
-local images = require('lib.imageschooser').chooserItems
+local image = require('lib.imageschooser').chooserItems
+local task = require('lib.task').chooserItems
 
 install {
   reloadConfig,
@@ -67,8 +68,11 @@ install {
   mac.displaySleep,
   mac.lockScreen,
 
-  -- images
-  images.allImages,
+  -- image
+  image.allImages,
+
+  -- task
+  task.addNeovimPluginSpec,
 }
 
 m:searchSubText(true):width(26)
