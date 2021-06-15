@@ -1,1 +1,1 @@
-hs.logger.defaultLogLevel = 'info'
+hs.logger.defaultLogLevel = 'warning'
