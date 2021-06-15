@@ -2,9 +2,9 @@ local log = hs.logger.new 'lib.inspectapp'
 
 -- Show information of the foregournd app
 bx.ctrlCmd('.', function()
-  hs.openConsole()
-
   local app = hs.application.frontmostApplication()
+
+  hs.openConsole()
 
   log.i([[
 
@@ -20,5 +20,4 @@ bx.ctrlCmd('.', function()
     pid = app:pid(),
     im = hs.keycodes.currentSourceID(),
   })
-
 end)
