@@ -6,6 +6,10 @@ require 'lib.lua'
 
 -- Reload Configuration
 require 'lib.reload'
+-- Luarocks
+require('lib.lua')
+local rocksdir = os.getenv('HOME') .. '/Git/hs-config/.rocks'
+package:addRocksTree(rocksdir, '5.4')
 
 -- Globals
 bx = require 'lib.bind'
