@@ -1,7 +1,25 @@
 local log = hs.logger.new('lib.task')
 
+local code_bin = '/usr/local/bin/code'
+
 return {
   chooserItems = {
+    openTry = {
+      text = 'Try Workspace',
+      subText = 'Open the "Try" workspace in VSCode',
+
+      action = function()
+        hs.execute(code_bin .. ' ~/Try')
+      end,
+    },
+    openConfig = {
+      text = 'Config Workspace',
+      subText = 'Open the "Config" workspace in VSCode',
+
+      action = function()
+        hs.execute(code_bin .. ' ~/.dotfiles/vscode/config.code-workspace')
+      end,
+    },
     addNeovimPluginSpec = {
       text = 'Create Neovim Plugin Spec File',
       subText = 'Input a unique filename',
