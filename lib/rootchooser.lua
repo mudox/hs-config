@@ -1,3 +1,5 @@
+local log = hs.logger.new('rchsr')
+
 hs.chooser.globalCallback = function(chooser, event)
   chooser:query(nil)
 
@@ -43,38 +45,22 @@ local function install(items)
 end
 
 -- Install chooser items here!
-local mac = require('lib.macos').chooserItems
-local bluetooth = require('lib.bluetooth').chooserItems
-local layout = require('lib.layout').chooserItems
-local image = require('lib.imageschooser').chooserItems
-local task = require('lib.task').chooserItems
+local chooserItems = {}
+local mods = {'macos', 'bluetooth', 'layout', 'imageschooser', 'task'}
 
-install {
-  reloadConfig,
+fx.each(mods, function(mod)
+  local dict = require('lib.' .. mod).chooserItems
 
-  -- bluetooth
-  bluetooth.checkAirPods,
-  bluetooth.toggleAirPods,
+  local keys = pl.tablex.keys(dict)
+  local items = pl.tablex.values(dict)
 
-  bluetooth.checkKeyboard,
-  bluetooth.toggleKeyboard,
+  log.f('%s -> %s', mod, keys)
+  assert(type(items) == 'table' and #items > 0)
 
-  -- layout
-  layout.g22DocAndCode,
-  layout.g22WebAndCode,
-  layout.g22WebAndNotion,
+  pl.tablex.insertvalues(chooserItems, items)
+end)
 
-  -- mac
-  mac.sleep,
-  mac.displaySleep,
-  mac.lockScreen,
-
-  -- image
-  image.allImages,
-
-  -- task
-  task.addNeovimPluginSpec,
-}
+install(chooserItems)
 
 m:searchSubText(true):width(26)
 
