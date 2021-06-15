@@ -60,8 +60,9 @@ install {
   bluetooth.toggleKeyboard,
 
   -- layout
-  layout.g22FirefoxAndCode,
-  layout.g22FirefoxAndNotion,
+  layout.g22DocAndCode,
+  layout.g22WebAndCode,
+  layout.g22WebAndNotion,
 
   -- mac
   mac.sleep,

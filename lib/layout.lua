@@ -1,40 +1,52 @@
+local get = hs.application.get
 local bind = require('lib.bind')
 local cell = require('lib.cell')
 
---- Hide all other windows
-local function onlyShow(...)
-  local names = {...}
+local id = {
+  dash = 'com.kapeli.dash-setapp',
+  vscode = 'com.microsoft.VSCode',
+  firefox = 'org.mozilla.firefox',
+  notion = 'notion.id',
+}
 
-  fx.each(hs.application.runningApplications(), function(app)
-    if fx.contains(names, app:name()) then
-      app:unhide()
-    else
-      app:hide()
+--- Hide all other windows
+-- @param ... bundle ID of application(s) to remain visible
+local function onlyShow(...)
+  local ids = {...}
+
+  fx.each(ids, function(id)
+    if not get(id) then
+      hs.application.open(id, 3, true)
     end
   end)
 
-  fx.each(names, function(name)
-    hs.application.launchOrFocus(name)
+  fx.each(hs.application.runningApplications(), function(app)
+    if not fx.contains(ids, app:bundleID()) then
+      app:hide()
+    else
+      app:unhide()
+    end
   end)
 end
 
 -- Build table for `hs.layout.apply`
 
-local function spec(name, rect)
-  return {name, nil, nil, nil, nil, rect}
+-- * 1st argument use hs.application object instead of name
+local function spec(app, rect)
+  return {app, nil, nil, nil, nil, rect}
 end
 
 -- Layout functions
 
 --- grid 1x2
--- @param left name of application in left pane
--- @param right name of application in right pane
+-- @param left bundle ID of application in left pane
+-- @param right bundle ID of application in right pane
 local function g12(left, right)
   onlyShow(left, right)
 
   -- layout
-  local firefox = spec(left, cell.grid12:cell(1, 1))
-  local code = spec(right, cell.grid12:cell(1, 2))
+  local firefox = spec(get(left), cell.grid12:cell(1, 1))
+  local code = spec(get(right), cell.grid12:cell(1, 2))
 
   hs.layout.apply {firefox, code}
 end
@@ -56,7 +68,7 @@ bind.ctrlAlt('m', function()
     return
   end
 
-  onlyShow(win:application():name())
+  onlyShow(win:application():bundleID())
   cell.grid11:moveTo(win, 1, 1)
 end)
 
@@ -87,20 +99,28 @@ end)
 -- Chooseer items
 
 local chooserItems = {
-  g22FirefoxAndCode = {
-    text = 'Layout: Web & Editor',
+  g22WebAndCode = {
+    text = 'Layout: Web & Code',
     subText = 'Firefox (left50) - VSCode (right50)',
 
     action = function()
-      g12('Firefox', 'Code')
+      g12(id.firefox, id.vscode)
     end,
   },
-  g22FirefoxAndNotion = {
+  g22DocAndCode = {
+    text = 'Layout: Doc & Code',
+    subText = 'Dash (left50) - VSCode (right50)',
+
+    action = function()
+      g12(id.dash, id.vscode)
+    end,
+  },
+  g22WebAndNotion = {
     text = 'Layout: Web & Note',
     subText = 'Firefox (left50) - Notion (right50)',
 
     action = function()
-      g12('Firefox', 'Notion')
+      g12(id.firefox, id.notion)
     end,
   },
 }
