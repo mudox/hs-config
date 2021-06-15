@@ -8,6 +8,7 @@ TEMP="$DIR/template"
 
 if [[ ! -f $FILE ]]; then
     printf "$(<$TEMP)" "$(pbpaste)" >"$FILE"
+    /usr/local/bin/code "$FILE"
 else
     echo "ERROR: file $FILE already exists"
     exit 1
