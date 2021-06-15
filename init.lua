@@ -1,11 +1,5 @@
 -- vim: fdm=marker
-require('lib.log')
-
--- Extensions to Lua language
-require 'lib.lua'
-
--- Reload Configuration
-require 'lib.reload'
+-- ! ORDER matters
 -- Luarocks
 require('lib.lua')
 local rocksdir = os.getenv('HOME') .. '/Git/hs-config/.rocks'
@@ -15,6 +9,19 @@ package:addRocksTree(rocksdir, '5.4')
 bx = require 'lib.bind'
 fx = hs.fnutils
 d = hs.inspect
+pl = require('pl.import_into')()
+
+-- Reload
+require 'lib.reload'
+
+-- Console
+require 'lib.console'
+
+-- Log
+require('lib.log')
+
+-- Extensions to Lua language
+require 'lib.lua'
 
 -- Disable window animation
 hs.window.animationDuration = 0
@@ -40,9 +47,6 @@ require 'lib.inspectapp'
 
 -- Sound
 require 'lib.sound'
-
--- Console
-require 'lib.console'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
