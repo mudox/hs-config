@@ -7,6 +7,8 @@ local id = {
   vscode = 'com.microsoft.VSCode',
   firefox = 'org.mozilla.firefox',
   notion = 'notion.id',
+  iterm2 = 'com.googlecode.iterm2',
+  kitty = 'net.kovidgoyal.kitty',
 }
 
 --- Hide all other windows
@@ -99,7 +101,23 @@ end)
 -- Chooseer items
 
 local chooserItems = {
+  g22TermAndCode = {
+    text = 'Layout: iTerm2 & Code',
+    subText = 'iTerm2 (left50) - VSCode (right50)',
+
+    action = function()
+      g12(id.iterm2, id.vscode)
+    end,
+  },
   g22WebAndCode = {
+    text = 'Layout: Web & iTerm2',
+    subText = 'Firefox (left50) - iTerm2 (right50)',
+
+    action = function()
+      g12(id.firefox, id.iterm2)
+    end,
+  },
+  g22WebAndTerm = {
     text = 'Layout: Web & Code',
     subText = 'Firefox (left50) - VSCode (right50)',
 
