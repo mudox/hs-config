@@ -52,6 +52,7 @@ end
 local spacing = 12
 
 return {
+  spacing = spacing,
   grid11 = Grid:new(1, 1, spacing), -- fullscreen with margin
   grid12 = Grid:new(1, 2, spacing),
   grid22 = Grid:new(2, 2, spacing),

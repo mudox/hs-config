@@ -48,5 +48,8 @@ require 'lib.inspectapp'
 -- Sound
 require 'lib.sound'
 
+-- Window filters
+require 'lib.filter'
+
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
