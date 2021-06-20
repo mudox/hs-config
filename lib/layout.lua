@@ -64,14 +64,19 @@ bind.ctrlAlt('l', function()
   cell.grid12:moveTo(win, 1, 2)
 end)
 
+-- Fullscreen with margin
+local function fullscreen(win)
+  onlyShow(win:application():bundleID())
+  cell.grid11:moveTo(win, 1, 1)
+end
+
 bind.ctrlAlt('m', function()
   local win = hs.window.frontmostWindow()
   if not win then
     return
   end
 
-  onlyShow(win:application():bundleID())
-  cell.grid11:moveTo(win, 1, 1)
+  fullscreen(win)
 end)
 
 -- Sheet
@@ -145,4 +150,9 @@ local chooserItems = {
 
 -- Assemble module
 
-return {chooserItems = chooserItems}
+return {
+  onlyShow = onlyShow,
+  fullscreen = fullscreen,
+
+  chooserItems = chooserItems,
+}
