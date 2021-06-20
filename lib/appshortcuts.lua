@@ -17,12 +17,13 @@ local appShortcuts = {
   --
   -- alt + key to other commonly used applications
   --
-  {alt, 'g', 'Kitty'},
+  {alt, '`', 'iTerm'},
+  {alt, 'g', 'kitty'},
   {alt, 'd', 'Dictionary'},
   {alt, 'p', 'Proxyman'},
   {alt, 't', 'Tower'},
   {alt, 'v', 'Visual Studio Code'},
-  {alt, 'x', 'Xcode'},
+  {alt, 'x', 'Xcode-13-beta'},
   {alt, 'k', 'DeepL'},
 
   -- switch hand
