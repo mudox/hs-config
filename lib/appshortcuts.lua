@@ -50,12 +50,16 @@ local appShortcuts = {
 
 -- Register app switching shortcuts
 
+local alertID
+
 hs.fnutils.each(appShortcuts, function(shortcut)
   local combo = shortcut[1]
   local key = tostring(shortcut[2])
   local name = shortcut[3]
+
   hs.hotkey.bind(combo, key, function()
-    hs.alert(name, 1)
+    hs.alert.closeSpecific(alertID)
+    alertID = hs.alert(name, 1)
     hs.application.launchOrFocus(name)
   end)
 end)
