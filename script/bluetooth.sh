@@ -1,4 +1,4 @@
-#!/user/bin/env bash
+#!/user/bin/env zsh
 
 # Manages bluetooth devices
 

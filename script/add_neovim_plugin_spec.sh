@@ -1,4 +1,4 @@
-#!/user/bin/env bash
+#!/user/bin/env zsh
 
 # Add a new neovim plugin spec file
 
