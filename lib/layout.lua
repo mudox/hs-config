@@ -53,12 +53,13 @@ local function g12(left, right)
   hs.layout.apply {firefox, code}
 end
 
--- Move windows
+-- Move windows to left halef
 bind.ctrlAlt('h', function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 1)
 end)
 
+-- Move windows to right halef
 bind.ctrlAlt('l', function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 2)
@@ -80,28 +81,18 @@ bind.ctrlAlt('m', function()
 end)
 
 -- Sheet
-bind.ctrlAlt('-', function()
-  local s = hs.screen.mainScreen():frame()
-  local r = hs.screen.mainScreen():frame()
-  r.h = r.h - 200
-  r.w = math.ceil(r.h / 1.3)
-  r.center = s.center
-
+local function sheet()
   local win = hs.window.frontmostWindow()
-  win:setFrame(r)
-end)
+  win:setFrame(cell.sheet())
+end
+bind.ctrlAlt('-', sheet)
 
 -- Form
-bind.ctrlAlt('=', function()
-  local s = hs.screen.mainScreen():frame()
-  local r = hs.screen.mainScreen():frame()
-  r.h = r.h - 200
-  r.w = math.ceil(r.h * 1.3)
-  r.center = s.center
-
+local function form()
   local win = hs.window.frontmostWindow()
-  win:setFrame(r)
-end)
+  win:setFrame(cell.form())
+end
+bind.ctrlAlt('=', form)
 
 -- Chooseer items
 
@@ -153,6 +144,9 @@ local chooserItems = {
 return {
   onlyShow = onlyShow,
   fullscreen = fullscreen,
+
+  sheet = sheet,
+  form = form,
 
   chooserItems = chooserItems,
 }

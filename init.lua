@@ -49,7 +49,8 @@ require 'lib.inspectapp'
 require 'lib.sound'
 
 -- Window filters
-require 'lib.filter'
+require 'lib.filter.cleargap'
+require 'lib.filter.snaptocell'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')

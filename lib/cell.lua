@@ -3,6 +3,15 @@ local screen = hs.screen.mainScreen():frame()
 
 local Grid = {}
 
+--- Define layout grid as rows x cols
+--
+-- @example
+-- ```lua
+-- local grid = Grid(2, 2, 10)
+-- grid:cell(1, 1) -- left half pane
+-- grid:cell(1, 2) -- right half pane
+-- ```
+-- @note row & col use 1-based index
 function Grid:new(rows, cols, spacing)
   local o = {rows = rows, cols = cols, spacing = spacing}
 
@@ -12,6 +21,7 @@ function Grid:new(rows, cols, spacing)
   return o
 end
 
+--- Return `hs.geometry.rect` representing the cell in the grid
 function Grid:cell(row, col)
   assert(row <= self.rows, 'invalid `row` value')
   assert(col <= self.cols, 'invalid `col` value')
@@ -27,6 +37,9 @@ function Grid:cell(row, col)
   }
 end
 
+--- For iterating cells in grid
+--
+-- @example: `for cell in grid:cells() do ... done`
 function Grid:cells()
   local row = 0
   local col = 0
@@ -45,15 +58,45 @@ function Grid:cells()
   end
 end
 
+--- Move hs.window to cell in the grid
 function Grid:moveTo(win, row, col)
   win:setFrame(self:cell(row, col))
 end
 
 local spacing = 12
 
+-- Sheet cell
+local function sheet()
+  local sf = hs.screen.mainScreen():frame()
+
+  local r = g.copy(sf)
+  r.h = r.h - 200
+  r.w = math.ceil(r.h / 1.3)
+  r.center = sf.center
+
+  return r
+end
+
+-- Form cell
+local function form()
+  local sf = hs.screen.mainScreen():frame()
+
+  local r = g.copy(sf)
+  r.h = r.h - 200
+  r.w = math.ceil(r.h * 1.3)
+  r.center = sf.center
+
+  return r
+end
+
 return {
   spacing = spacing,
-  grid11 = Grid:new(1, 1, spacing), -- fullscreen with margin
+
+  sheet = sheet,
+  form = form,
+  fullscreen = Grid:new(1, 1, spacing):cell(1, 1),
+
+  grid11 = Grid:new(1, 1, spacing),
   grid12 = Grid:new(1, 2, spacing),
   grid22 = Grid:new(2, 2, spacing),
   grid23 = Grid:new(2, 3, spacing),
