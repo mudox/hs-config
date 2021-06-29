@@ -98,19 +98,19 @@ bind.ctrlAlt('=', form)
 
 local chooserItems = {
   g22TermAndCode = {
-    text = 'Layout: iTerm2 & Code',
-    subText = 'iTerm2 (left50) - VSCode (right50)',
+    text = 'Layout: Kitty & Code',
+    subText = 'Kitty (left50) - VSCode (right50)',
 
     action = function()
-      g12(id.iterm2, id.vscode)
+      g12(id.kitty, id.vscode)
     end,
   },
   g22WebAndCode = {
-    text = 'Layout: Web & iTerm2',
-    subText = 'Firefox (left50) - iTerm2 (right50)',
+    text = 'Layout: Web & Kitty',
+    subText = 'Firefox (left50) - Kitty (right50)',
 
     action = function()
-      g12(id.firefox, id.iterm2)
+      g12(id.firefox, id.kitty)
     end,
   },
   g22WebAndTerm = {
