@@ -1,4 +1,4 @@
-local log = hs.logger.new('lib.filter.cleargap')
+local log = hs.logger.new('cleargap')
 log.setLogLevel('info')
 
 local wf = hs.window.filter

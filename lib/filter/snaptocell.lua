@@ -1,4 +1,4 @@
-local log = hs.logger.new('lib.filter.snaptocell')
+local log = hs.logger.new('snaptocell')
 log.setLogLevel('info')
 
 local wf = hs.window.filter
