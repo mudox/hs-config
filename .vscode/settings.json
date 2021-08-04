@@ -1,3 +1,11 @@
 {
-  "Lua.diagnostics.globals": ["hs", "d", "bx", "fx", "pl"]
+  "Lua.diagnostics.globals": ["hs", "d", "bx", "fx", "pl"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".rocks": true
+  }
 }
