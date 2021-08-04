@@ -14,15 +14,40 @@ local function rectApproximate(left, right, tolerance)
            math.abs(left.y2 - right.y2) < tolerance
 end
 
-local sheetApps = {'Session'}
-local fullscreenApps = {'Tower', 'Dash', 'Firefox', 'Xcode'}
+local rejectApps = {
+  'Alfred',
+  'BetterZip',
+  'Session',
+  'Setapp',
+  'SetappAgent',
+  'Surge',
+  'System Preferences',
+  '爱奇艺',
+  '腾讯视频',
+  'System Information',
+  'Paletro Preferences',
+}
+
+local sheetApps = {'Numi', 'Dictionary'}
+
+local fullscreenApps = {
+  'kitty',
+  'Tower',
+  'Dash',
+  'Firefox',
+  'Xcode',
+  'Safari',
+  'OmniGraffle',
+  'Sketch',
+}
 
 local f = wf.new()
 f:setDefaultFilter({allowRoles = {'AXStandardWindow'}})
+f:setCurrentSpace(true)
 
-f:rejectApp('Alfred')
-f:rejectApp('SetappAgent')
-f:rejectApp('Setapp')
+for _, app in ipairs(rejectApps) do
+  f:rejectApp(app)
+end
 
 f:subscribe(wf.windowOnScreen, function(win, name, event)
   log.df(('Event windowOnScreen: %s'):format(name))
