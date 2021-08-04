@@ -9,6 +9,7 @@ local id = {
   notion = 'notion.id',
   iterm2 = 'com.googlecode.iterm2',
   kitty = 'net.kovidgoyal.kitty',
+  preview = 'com.apple.Preview',
 }
 
 --- Hide all other windows
@@ -80,6 +81,14 @@ bind.ctrlAlt('m', function()
   fullscreen(win)
 end)
 
+-- cneter
+local function center(win)
+  local f = win:frame()
+  local sf = hs.screen.mainScreen():frame()
+  f.center = sf.center
+  win:setFrame(f)
+end
+
 -- Sheet
 local function sheet()
   local win = hs.window.frontmostWindow()
@@ -105,16 +114,16 @@ local chooserItems = {
       g12(id.kitty, id.vscode)
     end,
   },
-  g22WebAndCode = {
-    text = 'Layout: Web & Kitty',
+  g22FirefoxAndCode = {
+    text = 'Layout: Firefox & Kitty',
     subText = 'Firefox (left50) - Kitty (right50)',
 
     action = function()
       g12(id.firefox, id.kitty)
     end,
   },
-  g22WebAndTerm = {
-    text = 'Layout: Web & Code',
+  g22FirefoxAndTerm = {
+    text = 'Layout: Firefox & Code',
     subText = 'Firefox (left50) - VSCode (right50)',
 
     action = function()
@@ -129,12 +138,28 @@ local chooserItems = {
       g12(id.dash, id.vscode)
     end,
   },
-  g22WebAndNotion = {
-    text = 'Layout: Web & Note',
+  g22FirefoxAndNotion = {
+    text = 'Layout: Firefox & Note',
     subText = 'Firefox (left50) - Notion (right50)',
 
     action = function()
       g12(id.firefox, id.notion)
+    end,
+  },
+  g22KittyAndNote = {
+    text = 'Layout: Kitty & Note',
+    subText = 'Kitty (left50) - Notion (right50)',
+
+    action = function()
+      g12(id.kitty, id.notion)
+    end,
+  },
+  g22FirefoxAndPreview = {
+    text = 'Layout: Firefox & Preview',
+    subText = 'Firefox (left50) - Preview (right50)',
+
+    action = function()
+      g12(id.firefox, id.preview)
     end,
   },
 }
