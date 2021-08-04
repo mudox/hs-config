@@ -51,6 +51,7 @@ require 'lib.sound'
 -- Window filters
 require 'lib.filter.cleargap'
 require 'lib.filter.snaptocell'
+require 'lib.filter.inputmethod'
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
