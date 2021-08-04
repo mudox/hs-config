@@ -1,0 +1,10 @@
+{
+  "Lua.diagnostics.globals": [
+    "hs",
+    "fx",
+    "d",
+    "bx",
+    "rootChooser",
+    "pl"
+  ]
+}
