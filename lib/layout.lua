@@ -106,60 +106,68 @@ bind.ctrlAlt('=', form)
 -- Chooseer items
 
 local chooserItems = {
-  g22TermAndCode = {
+  g12_term_code = {
     text = 'Layout: Kitty & Code',
-    subText = 'Kitty (left50) - VSCode (right50)',
+    subText = 'Browse info / man pages and edit in Visual Studio Code',
 
     action = function()
       g12(id.kitty, id.vscode)
     end,
   },
-  g22FirefoxAndCode = {
+  g12_firefox_code = {
     text = 'Layout: Firefox & Kitty',
-    subText = 'Firefox (left50) - Kitty (right50)',
+    subText = 'Browse web and run commands in terminal Kitty',
 
     action = function()
       g12(id.firefox, id.kitty)
     end,
   },
-  g22FirefoxAndTerm = {
+  g12_firefox_term = {
     text = 'Layout: Firefox & Code',
-    subText = 'Firefox (left50) - VSCode (right50)',
+    subText = 'Browse web and edit in Visual Studio Code',
 
     action = function()
       g12(id.firefox, id.vscode)
     end,
   },
-  g22DocAndCode = {
+  g12_doc_code = {
     text = 'Layout: Doc & Code',
-    subText = 'Dash (left50) - VSCode (right50)',
+    subText = 'Browse doc in Dash and edit source code in Visual Studio Code',
 
     action = function()
       g12(id.dash, id.vscode)
     end,
   },
-  g22FirefoxAndNotion = {
-    text = 'Layout: Firefox & Note',
-    subText = 'Firefox (left50) - Notion (right50)',
+  g12_firefox_notion = {
+    text = 'Layout: Firefox & Notion',
+    subText = 'Browse web and take notes',
 
     action = function()
       g12(id.firefox, id.notion)
     end,
   },
-  g22KittyAndNote = {
-    text = 'Layout: Kitty & Note',
-    subText = 'Kitty (left50) - Notion (right50)',
+  g12_kitty_notion = {
+    text = 'Layout: Kitty & Notion',
+    subText = 'Browse info page / man page and take notes',
 
     action = function()
       g12(id.kitty, id.notion)
     end,
   },
-  g22FirefoxAndPreview = {
+  g12_firefox_preview = {
     text = 'Layout: Firefox & Preview',
-    subText = 'Firefox (left50) - Preview (right50)',
+    subText = 'Browse web and read doc for comparing',
 
     action = function()
       g12(id.firefox, id.preview)
+    end,
+  },
+  g12_preview_notion = {
+    text = 'Layout: Preview & Notion',
+    subText = 'Read and take notes',
+
+    action = function()
+      g12(id.preview, id.notion)
     end,
   },
 }
