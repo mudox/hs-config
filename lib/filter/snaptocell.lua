@@ -15,6 +15,10 @@ local function rectApproximate(left, right, tolerance)
 end
 
 local rejectApps = {
+  'Stickies',
+  'VLC',
+  'Problem Reporter',
+  'Simulator',
   'Alfred',
   'BetterZip',
   'Session',
@@ -28,7 +32,7 @@ local rejectApps = {
   'Paletro Preferences',
 }
 
-local sheetApps = {'Numi', 'Dictionary'}
+local sheetApps = {'Numi', 'Dictionary', 'Hammerspoon'}
 
 local fullscreenApps = {
   'kitty',
