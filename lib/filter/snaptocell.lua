@@ -52,21 +52,21 @@ end
 f:subscribe(wf.windowOnScreen, function(win, name, event)
   log.df(('Event windowOnScreen: %s'):format(name))
 
-  local f = win:frame()
+  local wf = win:frame()
 
-  if rectApproximate(f, cell.grid11:cell(1, 1)) then
+  if rectApproximate(wf, cell.grid11:cell(1, 1)) then
     log.f(('Apply layout [fullscreen] -> %s'):format(name))
     layout.fullscreen(win)
-  elseif rectApproximate(f, cell.grid12:cell(1, 1)) then
+  elseif rectApproximate(wf, cell.grid12:cell(1, 1)) then
     log.f(('Dectect layout [left half] -> %s'):format(name))
     -- currently noop
-  elseif rectApproximate(f, cell.grid12:cell(1, 2)) then
+  elseif rectApproximate(wf, cell.grid12:cell(1, 2)) then
     log.f(('Detect layout [right half] -> %s'):format(name))
     -- currently noop
-  elseif rectApproximate(f, cell.sheet()) then
+  elseif rectApproximate(wf, cell.sheet()) then
     log.f(('Detect layout [sheet] -> %s'):format(name))
     -- currently noop
-  elseif rectApproximate(f, cell.form()) then
+  elseif rectApproximate(wf, cell.form()) then
     log.f(('Detect layout [form] -> %s'):format(name))
     -- currently noop
   else
