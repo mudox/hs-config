@@ -1,7 +1,14 @@
 -- vim: fdm=marker
+
+local log = hs.logger.new('switchapp')
+log.setLogLevel('debug')
+
 local bind = require('lib.bind')
 local alt = bind.mods.alt
 local altShift = bind.mods.altShift
+
+local cell = require('lib.cell')
+local layout = require('lib.layout')
 
 --- App Shortcusts {{{1
 
@@ -17,13 +24,13 @@ local appShortcuts = {
   --
   -- alt + key to other commonly used applications
   --
-  {alt, '`', 'iTerm'},
+  -- {alt, '`', 'iTerm'},
   {alt, 'g', 'kitty'},
   {alt, 'd', 'Dictionary'},
   {alt, 'p', 'Proxyman'},
   {alt, 't', 'Tower'},
   {alt, 'v', 'Visual Studio Code'},
-  {alt, 'x', 'Xcode-13-beta'},
+  {alt, 'x', 'Xcode'},
   {alt, 'k', 'DeepL'},
 
   -- switch hand
@@ -59,9 +66,30 @@ hs.fnutils.each(appShortcuts, function(shortcut)
   local name = shortcut[3]
 
   hs.hotkey.bind(combo, key, function()
+    log.df('openApplication')
+
+    -- alert
     hs.alert.closeSpecific(alertID)
     alertID = hs.alert(name, 1)
-    hs.application.launchOrFocus(name)
+
+    -- open app
+    local app = hs.application.open(name, 1)
+    if not app then
+      log.wf('failed to open application %s',  name)
+      return
+    end
+
+    -- adjust window frame
+    local win = app:mainWindow()
+    if not win then
+      log.wf('failed to get main window of application: %s', name)
+      return
+    end
+
+    if layout.approx(win:frame(), cell.fullscreen) then
+      log.df('apply fullscreen to application: %s', name)
+      layout.fullscreen(win)
+    end
   end)
 end)
 

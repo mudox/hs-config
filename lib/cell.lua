@@ -1,5 +1,9 @@
+-- vim: fdm=marker
+
 local g = require('hs.geometry')
 local screen = hs.screen.mainScreen():frame()
+
+-- Class Grid {{{1
 
 local Grid = {}
 
@@ -63,6 +67,10 @@ function Grid:moveTo(win, row, col)
   win:setFrame(self:cell(row, col))
 end
 
+-- }}}
+
+-- Predefined Grid & Cells {{{1
+
 local spacing = 12
 
 -- Sheet cell
@@ -89,16 +97,25 @@ local function form()
   return r
 end
 
+local grid11 = Grid:new(1, 1, spacing)
+local grid12 = Grid:new(1, 2, spacing)
+
+-- }}}
+
 return {
   spacing = spacing,
 
   sheet = sheet,
   form = form,
-  fullscreen = Grid:new(1, 1, spacing):cell(1, 1),
 
-  grid11 = Grid:new(1, 1, spacing),
-  grid12 = Grid:new(1, 2, spacing),
-  grid22 = Grid:new(2, 2, spacing),
-  grid23 = Grid:new(2, 3, spacing),
-  grid33 = Grid:new(3, 3, spacing),
+  grid11 = grid11,
+  fullscreen = grid11:cell(1, 1),
+
+  grid12 = grid12,
+  left = grid12:cell(1, 1),
+  right = grid12:cell(1, 2),
+
+  -- grid22 = Grid:new(2, 2, spacing),
+  -- grid23 = Grid:new(2, 3, spacing),
+  -- grid33 = Grid:new(3, 3, spacing),
 }

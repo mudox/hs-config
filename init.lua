@@ -1,33 +1,35 @@
 -- vim: fdm=marker
 -- ! ORDER matters
+
 -- Luarocks
 require('lib.lua')
 local rocksdir = os.getenv('HOME') .. '/Git/hs-config/.rocks'
 package:addRocksTree(rocksdir, '5.4')
 
 -- Globals
-bx = require 'lib.bind'
+bx = require('lib.bind')
 fx = hs.fnutils
 d = hs.inspect
 pl = require('pl.import_into')()
+cls = hs.console.clearConsole
 
 -- Reload
-require 'lib.reload'
+require('lib.reload')
 
 -- Console
-require 'lib.console'
+require('lib.console')
 
 -- Log
 require('lib.log')
 
 -- Extensions to Lua language
-require 'lib.lua'
+require('lib.lua')
 
 -- Disable window animation
 hs.window.animationDuration = 0
 
 -- Alert default style
-require 'lib.alert'
+require('lib.alert')
 
 -- Root chooser
 ---@diagnostic disable-next-line: lowercase-global
@@ -37,21 +39,21 @@ bx.alt('r', function()
 end)
 
 -- Grid mode
-require 'lib.grid'
+require('lib.grid')
 
--- App shortcuts
-require 'lib.appshortcuts'
+-- Switch apps
+require('lib.switchapp')
 
 -- Inspect frontmost app
-require 'lib.inspectapp'
+require('lib.inspectapp')
 
 -- Sound
-require 'lib.sound'
+require('lib.sound')
 
 -- Window filters
-require 'lib.filter.cleargap'
-require 'lib.filter.snaptocell'
-require 'lib.filter.inputmethod'
+-- require('lib.filter.cleargap')
+-- require('lib.filter.snap')
+-- require('lib.filter.inputmethod')
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')
