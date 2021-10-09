@@ -1,10 +1,3 @@
 {
-  "Lua.diagnostics.globals": [
-    "hs",
-    "fx",
-    "d",
-    "bx",
-    "rootChooser",
-    "pl"
-  ]
+  "Lua.diagnostics.globals": ["bx", "cls", "d", "fx", "hs", "pl", "rootChooser"]
 }
