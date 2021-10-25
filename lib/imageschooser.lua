@@ -1,6 +1,3 @@
-local map = hs.fnutils.map
-local imap = hs.fnutils.map
-
 local function collect_items()
   local names = {}
 
@@ -39,7 +36,7 @@ local m = hs.chooser.new(function(item)
 end)
 
 local items = collect_items()
-m:choices(items):placeholderText(('Found %s images'):format(#items))
+m:choices(items)
 
 return {
   chooserItems = {
