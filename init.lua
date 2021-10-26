@@ -1,8 +1,10 @@
 -- vim: fdm=marker
 -- ! ORDER matters
 
--- Luarocks
+-- Extensions to Lua language
 require('lib.lua')
+
+-- Luarocks
 local rocksdir = os.getenv('HOME') .. '/Git/hs-config/.rocks'
 package:addRocksTree(rocksdir, '5.4')
 
@@ -22,9 +24,6 @@ require('lib.console')
 -- Log
 require('lib.log')
 
--- Extensions to Lua language
-require('lib.lua')
-
 -- Disable window animation
 hs.window.animationDuration = 0
 
@@ -32,14 +31,13 @@ hs.window.animationDuration = 0
 require('lib.alert')
 
 -- Root chooser
----@diagnostic disable-next-line: lowercase-global
-rootChooser = require('lib.rootchooser')
+alfred = require('lib.rootchooser')
 bx.alt('r', function()
-  rootChooser:show()
+  alfred:show()
 end)
 
--- Grid mode
-require('lib.grid')
+-- Hammerspoon Grid UI
+require('lib.gridui')
 
 -- Switch apps
 require('lib.switchapp')
@@ -51,9 +49,9 @@ require('lib.inspectapp')
 require('lib.sound')
 
 -- Window filters
--- require('lib.filter.cleargap')
--- require('lib.filter.snap')
--- require('lib.filter.inputmethod')
+require('lib.filter.cleargap')
+require('lib.filter.snap')
+require('lib.filter.inputmethod')
 
 -- Pin to last line
 hs.alert('Hammerspoon configuration reloaded')

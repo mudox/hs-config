@@ -2,7 +2,7 @@ local log = hs.logger.new('cleargap')
 log.setLogLevel('info')
 
 local wf = hs.window.filter
-local cell = require('lib.cell')
+local cell = require('lib.grid')
 local layout = require('lib.layout')
 
 local gap = cell.spacing

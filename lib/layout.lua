@@ -1,11 +1,10 @@
 -- vim: fdm=marker
-
 local log = hs.logger.new('layout')
 log.setLogLevel('debug')
 
 local getApp = hs.application.get
 local ctrlCmd = require('lib.bind').ctrlCmd
-local cell = require('lib.cell')
+local cell = require('lib.grid')
 
 -- Helpers {{{1
 
@@ -19,7 +18,16 @@ local function approx(left, right, tolerance)
            math.abs(left.y2 - right.y2) < tolerance
 end
 
---- Hide all other windows
+-- Hide other applications through system menu
+local function hideOthers(name)
+  local app = hs.application.get(name)
+  if not app then
+    return
+  end
+  return app:selectMenuItem('Hide Others')
+end
+
+--- Hide all other applications
 -- @param ... bundle ID of application(s) to remain visible
 local function onlyShow(...)
   local ids = {...}
@@ -53,7 +61,12 @@ end
 -- Fullscreen
 local function fullscreen(win)
   cell.grid11:moveTo(win, 1, 1)
-  onlyShow(win:application():bundleID())
+  local id = win:application():bundleID()
+  local ret = hideOthers(id)
+  if not ret then
+    log.wf('`hideOthers` failed on %s, fallback to `onlyShow`', id)
+    onlyShow(win:application():bundleID())
+  end
 end
 
 --- Center window
@@ -206,6 +219,7 @@ local chooserItems = {
 return {
   approx = approx,
 
+  hideOthers = hideOthers,
   onlyShow = onlyShow,
   fullscreen = fullscreen,
 

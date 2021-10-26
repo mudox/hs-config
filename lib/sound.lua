@@ -63,5 +63,5 @@ end
 
 local bind = require('lib.bind')
 
-bind.ctrlAlt('[', volumeDown, nil, volumeDown)
-bind.ctrlAlt(']', volumeUp, nil, volumeUp)
+bind.ctrlCmd('[', volumeDown, nil, volumeDown)
+bind.ctrlCmd(']', volumeUp, nil, volumeUp)

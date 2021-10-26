@@ -8,19 +8,6 @@ hs.chooser.globalCallback = function(chooser, event)
   end
 end
 
--- Item: reload config
-
-local reloadConfig = {
-  text = 'Reload Hammerspoon Configuration',
-  subText = 'Console content will be cleared first',
-  image = hs.image.imageFromAppBundle('org.hammerspoon.Hammerspoon'),
-
-  action = function()
-    require('lib.reload').reload()
-  end,
-  info = 'mudox',
-}
-
 -- Module
 
 local actions = {}
@@ -46,7 +33,13 @@ end
 
 -- Install chooser items here!
 local chooserItems = {}
-local mods = {'macos', 'bluetooth', 'layout', 'imageschooser', 'task'}
+local mods = {
+ 'macos',
+ 'bluetooth',
+ 'layout',
+ 'imageschooser',
+ 'task'
+}
 
 fx.each(mods, function(mod)
   local dict = require('lib.' .. mod).chooserItems

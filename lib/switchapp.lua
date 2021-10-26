@@ -7,9 +7,6 @@ local bind = require('lib.bind')
 local alt = bind.mods.alt
 local altShift = bind.mods.altShift
 
-local cell = require('lib.cell')
-local layout = require('lib.layout')
-
 --- App Shortcusts {{{1
 
 local appShortcuts = {
@@ -31,7 +28,6 @@ local appShortcuts = {
   {alt, 't', 'Tower'},
   {alt, 'v', 'Visual Studio Code'},
   {alt, 'x', 'Xcode'},
-  {alt, 'k', 'DeepL'},
 
   -- switch hand
 
@@ -80,16 +76,16 @@ hs.fnutils.each(appShortcuts, function(shortcut)
     end
 
     -- adjust window frame
-    local win = app:mainWindow()
-    if not win then
-      log.wf('failed to get main window of application: %s', name)
-      return
-    end
+    -- local win = app:mainWindow()
+    -- if not win then
+      -- log.wf('failed to get main window of application: %s', name)
+      -- return
+    -- end
 
-    if layout.approx(win:frame(), cell.fullscreen) then
-      log.df('apply fullscreen to application: %s', name)
-      layout.fullscreen(win)
-    end
+    -- if layout.approx(win:frame(), cell.fullscreen) then
+      -- log.df('apply fullscreen to application: %s', name)
+      -- layout.fullscreen(win)
+    -- end
   end)
 end)
 

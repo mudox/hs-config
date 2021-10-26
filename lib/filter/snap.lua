@@ -4,7 +4,7 @@ local log = hs.logger.new('snap')
 log.setLogLevel('debug')
 
 local wf = hs.window.filter
-local cell = require('lib.cell')
+local cell = require('lib.grid')
 local layout = require('lib.layout')
 local approx = layout.approx
 
@@ -53,7 +53,7 @@ local function snap(win, name, event)
   local rect = win:frame()
 
   if approx(rect, cell.fullscreen) then
-    log.df('approx [fullscreen]')
+    log.df('apply [fullscreen]')
     layout.fullscreen(win)
   elseif approx(rect, cell.left) then
     log.df('approx [left]')
@@ -68,29 +68,29 @@ local function snap(win, name, event)
     log.df('approx [form]')
     -- currently noop
   else
-    log.df('free layout')
+    -- log.df('free layout')
 
     -- do nothing if the application open multiple windows
-    if #win:application():allWindows() > 1 then
-      log.df('app opened multiple windows, skip')
-      return
-    end
+    -- if #win:application():allWindows() > 1 then
+      -- log.df('app opened multiple windows, skip')
+      -- return
+    -- end
 
-    if fx.contains(fullscreenApps, name) then
-      log.df('apply layout [fullscreen]')
-      layout.fullscreen(win)
-    elseif fx.contains(sheetApps, name) then
-      log.df('apply layout [sheet]')
-      layout.sheet(win)
-    else
-      log.df('not in app lists,skip')
+    -- if fx.contains(fullscreenApps, name) then
+      -- log.df('apply layout [fullscreen]')
+      -- layout.fullscreen(win)
+    -- elseif fx.contains(sheetApps, name) then
+      -- log.df('apply layout [sheet]')
+      -- layout.sheet(win)
+    -- else
+      -- log.df('not in app lists,skip')
       -- layout.form(win)
-    end
+    -- end
   end
 end
 
--- f:subscribe(wf.windowOnScreen, snap)
-f:subscribe(wf.windowFocused, snap)
+f:subscribe(wf.windowOnScreen, snap)
+-- f:subscribe(wf.windowFocused, snap)
 
 -- f:pause()
 

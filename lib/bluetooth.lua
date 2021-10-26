@@ -70,7 +70,7 @@ return {
     checkAirPods = airpodsItems.check,
     toggleAirPods = airpodsItems.toggle,
 
-    checkKeyboard = keyboardItems.check,
-    toggleKeyboard = keyboardItems.toggle,
+    -- checkKeyboard = keyboardItems.check,
+    -- toggleKeyboard = keyboardItems.toggle,
   },
 }
