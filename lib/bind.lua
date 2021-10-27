@@ -3,6 +3,7 @@ local altShift = {'alt', 'shift'}
 local altCmd = {'alt', 'cmd'}
 local ctrlCmd = {'ctrl', 'cmd'}
 local ctrlAlt = {'ctrl', 'alt'}
+local ctrlAltCmd = {'ctrl', 'alt', 'cmd'}
 
 return {
   mods = {
@@ -31,5 +32,9 @@ return {
 
   ctrlAlt = function(key, to, ...)
     hs.hotkey.bind(ctrlAlt, key, to, ...)
+  end,
+
+  ctrlAltCmd = function(key, to, ...)
+    hs.hotkey.bind(ctrlAltCmd, key, to, ...)
   end,
 }
