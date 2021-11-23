@@ -1,4 +1,5 @@
--- vim: fdm=marker
+-- vim: fdm=marker fmr=〈,〉
+
 local log = hs.logger.new('layout')
 log.setLogLevel('debug')
 
@@ -6,7 +7,7 @@ local getApp = hs.application.get
 local prefix = require('lib.bind').prefix
 local cell = require('lib.grid')
 
--- Helpers {{{1
+-- Helpers 〈1
 
 --- Determine if 2 rects approximate
 local function approx(left, right, tolerance)
@@ -54,9 +55,9 @@ local function spec(app, rect)
   return {app, nil, nil, nil, nil, rect}
 end
 
--- }}}
+-- 〉
 
--- Layout functions {{{1
+-- Layout functions 〈1
 
 -- Fullscreen
 local function fullscreen(win)
@@ -122,9 +123,9 @@ local function g12(left, right)
   hs.layout.apply {firefox, code}
 end
 
--- }}}
+-- 〉
 
--- Chooseer items {{{1
+-- Chooseer items 〈1
 
 local id = {
   dash = 'com.kapeli.dash-setapp',
@@ -212,7 +213,7 @@ local chooserItems = {
   },
 }
 
--- }}}
+-- 〉
 
 -- Assemble module
 

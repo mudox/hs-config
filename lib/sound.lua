@@ -1,5 +1,3 @@
-local au = hs.audiodevice
-
 local step = 5
 
 local function outDevice()
