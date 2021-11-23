@@ -5,7 +5,7 @@ local ctrlCmd = {'ctrl', 'cmd'}
 local ctrlAlt = {'ctrl', 'alt'}
 local ctrlAltCmd = {'ctrl', 'alt', 'cmd'}
 
-return {
+local M = {
   mods = {
     alt = alt,
     altShift = altShift,
@@ -38,3 +38,7 @@ return {
     hs.hotkey.bind(ctrlAltCmd, key, to, ...)
   end,
 }
+
+M.prefix = M.ctrlAltCmd
+
+return M

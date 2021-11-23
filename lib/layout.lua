@@ -3,7 +3,7 @@ local log = hs.logger.new('layout')
 log.setLogLevel('debug')
 
 local getApp = hs.application.get
-local ctrlAltCmd = require('lib.bind').ctrlAltCmd
+local prefix = require('lib.bind').prefix
 local cell = require('lib.grid')
 
 -- Helpers {{{1
@@ -82,29 +82,29 @@ local function sheet()
   local win = hs.window.frontmostWindow()
   win:setFrame(cell.sheet())
 end
-ctrlAltCmd('-', sheet)
+prefix('-', sheet)
 
 -- Form
 local function form()
   local win = hs.window.frontmostWindow()
   win:setFrame(cell.form())
 end
-ctrlAltCmd('=', form)
+prefix('=', form)
 
 -- Left
-ctrlAltCmd('h', function()
+prefix('h', function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 1)
 end)
 
 -- Right
-ctrlAltCmd('l', function()
+prefix('l', function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 2)
 end)
 
 -- Fullscreen
-ctrlAltCmd('m', function()
+prefix('m', function()
   local win = hs.window.frontmostWindow()
   fullscreen(win)
 end)
