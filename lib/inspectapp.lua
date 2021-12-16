@@ -1,14 +1,14 @@
-local log = hs.logger.new 'lib.inspectapp'
-log.setLogLevel('info')
+local log = hs.logger.new("lib.inspectapp")
+log.setLogLevel("info")
 
 -- Show information of the foregournd app
-bx.ctrlCmd('.', function()
-  local win = hs.window.frontmostWindow()
-  local app = win:application()
+bx.ctrlCmd(".", function()
+	local win = hs.window.frontmostWindow()
+	local app = win:application()
 
-  hs.openConsole()
+	hs.openConsole()
 
-  log.i([[
+	log.i([[
 
   App name:             ${n}
   Bundle path:          ${p}
@@ -19,13 +19,13 @@ bx.ctrlCmd('.', function()
   Window role:          ${role}
   Window subrole        ${subrole}
   ]] % {
-    n = app:name(),
-    p = app:path(),
-    id = app:bundleID(),
-    pid = app:pid(),
-    -- im = hs.keycodes.currentSourceID(),
-    title = win:title(),
-    role = win:role(),
-    subrole = win:subrole(),
-  })
+		n = app:name(),
+		p = app:path(),
+		id = app:bundleID(),
+		pid = app:pid(),
+		-- im = hs.keycodes.currentSourceID(),
+		title = win:title(),
+		role = win:role(),
+		subrole = win:subrole(),
+	})
 end)
