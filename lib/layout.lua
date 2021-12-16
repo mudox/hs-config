@@ -3,11 +3,14 @@
 local log = hs.logger.new('layout')
 log.setLogLevel('debug')
 
-local getApp = hs.application.get
 local prefix = require('lib.bind').prefix
 local cell = require('lib.grid')
 
 -- Helpers 〈1
+
+local function getApp(id)
+  return hs.application.open(id, 2, true)
+end
 
 --- Determine if 2 rects approximate
 local function approx(left, right, tolerance)
@@ -114,13 +117,16 @@ end)
 -- @param left bundle ID of application in left pane
 -- @param right bundle ID of application in right pane
 local function g12(left, right)
+  left = getApp(left)
+  right = getApp(right)
+
   onlyShow(left, right)
 
   -- layout
-  local firefox = spec(getApp(left), cell.grid12:cell(1, 1))
-  local code = spec(getApp(right), cell.grid12:cell(1, 2))
+  left = spec(left, cell.grid12:cell(1, 1))
+  right = spec(right, cell.grid12:cell(1, 2))
 
-  hs.layout.apply {firefox, code}
+  hs.layout.apply {left, right}
 end
 
 -- 〉
@@ -209,6 +215,14 @@ local chooserItems = {
 
     action = function()
       g12(id.xcode, id.dash)
+    end,
+  },
+  g12_dash_notion = {
+    text = 'Layout: Dash & Notion',
+    subText = 'Browse doc and take notes',
+
+    action = function()
+      g12(id.dash, id.notion)
     end,
   },
 }
