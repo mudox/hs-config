@@ -1,15 +1,16 @@
--- vim: fdm=marker
+-- vim: fdm=marker fmr=〈,〉
 
 local log = hs.logger.new("switchapp")
 log.setLogLevel("debug")
 
 local bind = require("mudox.bind")
+local hyper = bind.mods.hyper
 local alt = bind.mods.alt
 local altShift = bind.mods.altShift
 
---- App Shortcusts {{{1
+-- App Shortcusts 〈
 
-local appShortcuts = {
+local apps = {
 	--
 	-- alt + num for most commonly used applications
 	--
@@ -47,20 +48,20 @@ local appShortcuts = {
 	-- switch hand
 
 	--
-	-- cmd + alt for relatively less commonly used applications
+	-- hyper table
 	--
+	{ hyper, "o", "FireFox" },
+	{ hyper, "l", "kitty" },
 }
 
 -- Register app switching shortcuts
 
 local alertID
 
-hs.fnutils.each(appShortcuts, function(shortcut)
-	local combo = shortcut[1]
-	local key = tostring(shortcut[2])
-	local name = shortcut[3]
+hs.fnutils.each(apps, function(config)
+	local combo, key, name = table.unpack(config)
 
-	hs.hotkey.bind(combo, key, function()
+	local function fn()
 		log.df("openApplication")
 
 		-- alert
@@ -68,26 +69,16 @@ hs.fnutils.each(appShortcuts, function(shortcut)
 		alertID = hs.alert(name, 1)
 
 		-- open app
-		local app = hs.application.open(name, 1)
+		local app = hs.application.open(name)
 		if not app then
 			log.wf("failed to open application %s", name)
 			return
 		end
+	end
 
-		-- adjust window frame
-		-- local win = app:mainWindow()
-		-- if not win then
-		-- log.wf('failed to get main window of application: %s', name)
-		-- return
-		-- end
-
-		-- if layout.approx(win:frame(), cell.fullscreen) then
-		-- log.df('apply fullscreen to application: %s', name)
-		-- layout.fullscreen(win)
-		-- end
-	end)
+	hs.hotkey.bind(combo, tostring(key), fn, nil, fn)
 end)
 
---- }}}
+-- 〉
 
-return { shortcuts = appShortcuts }
+-- Hyper table return { shortcuts = apps }

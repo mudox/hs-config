@@ -13,6 +13,7 @@ local M = {
 		altCmd = altCmd,
 		ctrlCmd = ctrlCmd,
 		ctrlAlt = ctrlAlt,
+		hyper = hyper,
 	},
 
 	alt = function(key, to, ...)
