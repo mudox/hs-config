@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "Lua.diagnostics.globals": [
+        "vim",
+        "ngx",
+        "bx",
+        "hs",
+        "pl",
+        "cls",
+        "d",
+        "fx",
+        "alfred"
+    ],
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.workspace.library": [
+        "${3rd}/OpenResty/library"
+    ]
+}
