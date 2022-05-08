@@ -4,6 +4,7 @@ local altCmd = { "alt", "cmd" }
 local ctrlCmd = { "ctrl", "cmd" }
 local ctrlAlt = { "ctrl", "alt" }
 local ctrlAltCmd = { "ctrl", "alt", "cmd" }
+local hyper = { "ctrl", "alt", "cmd", "shift" }
 
 local M = {
 	mods = {
@@ -36,6 +37,10 @@ local M = {
 
 	ctrlAltCmd = function(key, to, ...)
 		hs.hotkey.bind(ctrlAltCmd, key, to, ...)
+	end,
+
+	hyper = function(key, to, ...)
+		hs.hotkey.bind(hyper, key, to, ...)
 	end,
 }
 

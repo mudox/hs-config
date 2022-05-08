@@ -1,4 +1,4 @@
-local log = hs.logger.new("lib.task")
+local log = hs.logger.new("mudox.task")
 
 local code_bin = "/usr/local/bin/code"
 

@@ -1,4 +1,4 @@
-local log = hs.logger.new("lib.reload")
+local log = hs.logger.new("mudox.reload")
 
 local function reload()
 	hs.console.clearConsole()

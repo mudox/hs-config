@@ -2,56 +2,56 @@
 -- ! ORDER matters
 
 -- Extensions to Lua language
-require('lib.lua')
+require("mudox.lua")
 
 -- Luarocks
-local rocksdir = os.getenv('HOME') .. '/Git/hs-config/.rocks'
-package:addRocksTree(rocksdir, '5.4')
+local rocksdir = os.getenv("HOME") .. "/Git/hs-config/.rocks"
+package:addRocksTree(rocksdir, "5.4")
 
 -- Globals
-bx = require('lib.bind')
+bx = require("mudox.bind")
 fx = hs.fnutils
 d = hs.inspect
-pl = require('pl.import_into')()
+pl = require("pl.import_into")()
 cls = hs.console.clearConsole
 
 -- Reload
-require('lib.reload')
+require("mudox.reload")
 
 -- Console
-require('lib.console')
+require("mudox.console")
 
 -- Log
-require('lib.log')
+require("mudox.log")
 
 -- Disable window animation
 hs.window.animationDuration = 0
 
 -- Alert default style
-require('lib.alert')
+require("mudox.alert")
 
 -- Root chooser
-alfred = require('lib.rootchooser')
-bx.alt('r', function()
-  alfred:show()
+alfred = require("mudox.rootchooser")
+bx.alt("r", function()
+	alfred:show()
 end)
 
 -- Hammerspoon Grid UI
-require('lib.gridui')
+require("mudox.gridui")
 
 -- Switch apps
-require('lib.switchapp')
+require("mudox.switchapp")
 
 -- Inspect frontmost app
-require('lib.inspectapp')
+require("mudox.inspectapp")
 
 -- Sound
-require('lib.sound')
+require("mudox.sound")
 
 -- Window filters
-require('lib.filter.cleargap')
-require('lib.filter.snap')
-require('lib.filter.inputmethod')
+require("mudox.filter.cleargap")
+require("mudox.filter.snap")
+require("mudox.filter.inputmethod")
 
 -- Pin to last line
-hs.alert('Hammerspoon configuration reloaded')
+hs.alert("Hammerspoon configuration reloaded")

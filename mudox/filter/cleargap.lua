@@ -2,8 +2,8 @@ local log = hs.logger.new("cleargap")
 log.setLogLevel("info")
 
 local wf = hs.window.filter
-local cell = require("lib.grid")
-local layout = require("lib.layout")
+local cell = require("mudox.grid")
+local layout = require("mudox.layout")
 
 local gap = cell.spacing
 local frame = hs.screen.mainScreen():frame()

@@ -3,8 +3,8 @@
 local log = hs.logger.new("layout")
 log.setLogLevel("debug")
 
-local prefix = require("lib.bind").prefix
-local cell = require("lib.grid")
+local prefix = require("mudox.bind").prefix
+local cell = require("mudox.grid")
 
 -- Helpers 〈1
 

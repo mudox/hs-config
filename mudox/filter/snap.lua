@@ -4,8 +4,8 @@ local log = hs.logger.new("snap")
 log.setLogLevel("debug")
 
 local wf = hs.window.filter
-local cell = require("lib.grid")
-local layout = require("lib.layout")
+local cell = require("mudox.grid")
+local layout = require("mudox.layout")
 local approx = layout.approx
 
 -- local rejectApps = {

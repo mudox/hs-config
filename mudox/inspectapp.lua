@@ -1,4 +1,4 @@
-local log = hs.logger.new("lib.inspectapp")
+local log = hs.logger.new("mudox.inspectapp")
 log.setLogLevel("info")
 
 -- Show information of the foregournd app

@@ -42,7 +42,7 @@ local mods = {
 }
 
 fx.each(mods, function(mod)
-	local dict = require("lib." .. mod).chooserItems
+	local dict = require("mudox." .. mod).chooserItems
 
 	local keys = pl.tablex.keys(dict)
 	local items = pl.tablex.values(dict)
