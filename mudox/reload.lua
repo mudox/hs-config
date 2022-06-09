@@ -1,26 +1,26 @@
 local log = hs.logger.new("mudox.reload")
 
 local function reload()
-	hs.console.clearConsole()
-	hs.reload()
+  hs.console.clearConsole()
+  hs.reload()
 end
 
 local function reloadConfigIfChanged(paths)
-	local doReload = false
+  local doReload = false
 
-	for _, file in pairs(paths or {}) do
-		if file:sub(-4) == ".lua" then
-			doReload = true
-			break
-		end
-	end
+  for _, file in pairs(paths or {}) do
+    if file:sub(-4) == ".lua" then
+      doReload = true
+      break
+    end
+  end
 
-	if doReload then
-		log.i("A lua config file changed, reload")
-		reload()
-	else
-		log.i("No lua file changed, skip reloading")
-	end
+  if doReload then
+    log.i("A lua config file changed, reload")
+    reload()
+  else
+    log.i("No lua file changed, skip reloading")
+  end
 end
 
 local path = os.getenv("HOME") .. "/.hammerspoon/"

@@ -6,8 +6,8 @@ g.ui.cellStrokeColor = { 1, 0, 0, 0.4 }
 
 g.ui.showExtraKeys = false
 
-g.setMargins({ w = margin, h = margin })
+g.setMargins { w = margin, h = margin }
 
 require("mudox.bind").altShift("3", function()
-	hs.grid.toggleShow(nil, true)
+  hs.grid.toggleShow(nil, true)
 end)
