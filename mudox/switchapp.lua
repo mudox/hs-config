@@ -8,49 +8,50 @@ local hyper = bind.mods.hyper
 local alt = bind.mods.alt
 local altShift = bind.mods.altShift
 
+-- stylua: ignore start
 local apps = {
-  { alt, 1, "Firefox" },
-  { alt, 3, "Notion" },
-  { alt, 5, "Preview" },
-  { alt, 6, "Books" },
-  { alt, 8, "Dash" },
-  { alt, 0, "Finder" },
+  -- Most commonly used applications
+  { hyper,    "h", "kitty",              "net.kovidgoyal.kitty" },
+  { hyper,    "l", "Google Chrome",      "com.google.Chrome" },
+  { hyper,    "k", "Xcode-beta",         "com.apple.dt.Xcode" },
 
-  { alt, "g", "kitty" },
-  { alt, "d", "Dictionary" },
-  { alt, "p", "Proxyman" },
-  { alt, "t", "Tower" },
-  { alt, "v", "Visual Studio Code" },
-  { alt, "x", "Xcode" },
+  { alt,      3,   "Notion",             "notion.id" },
+  { alt,      5,   "Preview",            "com.apple.Preview" },
+  { alt,      6,   "Books",              "com.apple.iBooksX" },
+  { alt,      8,   "Dash",               "com.kapeli.dash-setapp" },
+  { alt,      0,   "Finder",             "com.apple.finder" },
 
-  { altShift, 1, "Simulator" },
+  { alt,      "d", "Dictionary",         "com.apple.Dictionary" },
+  { alt,      "p", "Proxyman",           "com.proxyman.NSProxy-setapp" },
+  { alt,      "t", "Tower",              "com.fournova.Tower3" },
+  { alt,      "v", "Visual Studio Code", "com.microsoft.VSCode" },
 
-  { altShift, "g", "OmniGraffle" },
+  { altShift, 1,   "Simulator",          "com.apple.iphonesimulator" },
 
-  { hyper, "h", "Google Chrome" },
-  { hyper, "l", "FireFox" },
-  { hyper, "j", "kitty" },
-  { hyper, "k", "Xcode" },
+  { altShift, "g", "OmniGraffle",        "com.omnigroup.OmniGraffle7" },
 }
+-- stylua: ignore end
 
 local alertID
 
 hs.fnutils.each(apps, function(config)
-  local combo, key, name = table.unpack(config)
+  local combo, key, name, bundleID = table.unpack(config)
 
   local function fn()
     log.df("openApplication")
 
     -- alert
     hs.alert.closeSpecific(alertID)
-    alertID = hs.alert(name, 1)
+
+    local icon = hs.image.imageFromAppBundle(bundleID)
+    if icon then
+      alertID = hs.alert.showWithImage(name, icon, 1)
+    else
+      alertID = hs.alert(name, 1)
+    end
 
     -- open app
-    local app = hs.application.open(name)
-    if not app then
-      log.wf("failed to open application %s", name)
-      return
-    end
+    hs.application.open(name, 0)
   end
 
   hs.hotkey.bind(combo, tostring(key), fn, nil, fn)
