@@ -16,6 +16,7 @@ local apps = {
   { hyper,    "k", "Xcode-beta",         "com.apple.dt.Xcode" },
 
   { alt,      3,   "Notion",             "notion.id" },
+  { alt,      4,   "Figma",              "com.figma.Desktop" },
   { alt,      5,   "Preview",            "com.apple.Preview" },
   { alt,      6,   "Books",              "com.apple.iBooksX" },
   { alt,      8,   "Dash",               "com.kapeli.dash-setapp" },
