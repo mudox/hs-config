@@ -137,6 +137,7 @@ local id = {
   dash = "com.kapeli.dash-setapp",
   vscode = "com.microsoft.VSCode",
   firefox = "org.mozilla.firefox",
+  chrome = "com.google.Chrome",
   notion = "notion.id",
   iterm2 = "com.googlecode.iterm2",
   kitty = "net.kovidgoyal.kitty",
@@ -153,20 +154,20 @@ local chooserItems = {
       g12(id.kitty, id.vscode)
     end,
   },
-  g12_firefox_code = {
-    text = "Layout: Firefox & Kitty",
+  g12_chrome_code = {
+    text = "Layout: Chrome & Kitty",
     subText = "Browse web and run commands in terminal Kitty",
 
     action = function()
-      g12(id.firefox, id.kitty)
+      g12(id.chrome, id.kitty)
     end,
   },
-  g12_firefox_term = {
-    text = "Layout: Firefox & Code",
+  g12_chrome_term = {
+    text = "Layout: Chrome & Code",
     subText = "Browse web and edit in Visual Studio Code",
 
     action = function()
-      g12(id.firefox, id.vscode)
+      g12(id.chrome, id.vscode)
     end,
   },
   g12_doc_code = {
@@ -177,12 +178,12 @@ local chooserItems = {
       g12(id.dash, id.vscode)
     end,
   },
-  g12_firefox_notion = {
-    text = "Layout: Firefox & Notion",
+  g12_chrome_notion = {
+    text = "Layout: Chrome & Notion",
     subText = "Browse web and take notes",
 
     action = function()
-      g12(id.firefox, id.notion)
+      g12(id.chrome, id.notion)
     end,
   },
   g12_kitty_notion = {
@@ -193,12 +194,12 @@ local chooserItems = {
       g12(id.kitty, id.notion)
     end,
   },
-  g12_firefox_preview = {
-    text = "Layout: Firefox & Preview",
+  g12_chrome_preview = {
+    text = "Layout: Chrome & Preview",
     subText = "Browse web and read doc for comparing",
 
     action = function()
-      g12(id.firefox, id.preview)
+      g12(id.chrome, id.preview)
     end,
   },
   g12_preview_notion = {
