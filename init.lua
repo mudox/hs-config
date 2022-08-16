@@ -32,8 +32,8 @@ require("mudox.alert")
 
 -- Root chooser
 alfred = require("mudox.rootchooser")
-bx.alt("r", function()
-	alfred:show()
+bx.hyper("space", function()
+  alfred:show()
 end)
 
 -- Hammerspoon Grid UI
