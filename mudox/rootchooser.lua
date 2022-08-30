@@ -51,6 +51,7 @@ fx.each(mods, function(mod)
 
   pl.tablex.insertvalues(chooserItems, items)
 end)
+    "finder",
 
 install(chooserItems)
 
