@@ -38,7 +38,6 @@ local mods = {
   "bluetooth",
   "layout",
   "imageschooser",
-  "task",
 }
 
 fx.each(mods, function(mod)
