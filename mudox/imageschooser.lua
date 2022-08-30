@@ -43,6 +43,7 @@ return {
     allImages = {
       text = "All Images",
       subText = "Click to copy the name into clipboard",
+      image = require("mudox.asset").image("gallery.png"),
 
       action = function()
         m:show()

@@ -228,6 +228,11 @@ local chooserItems = {
   },
 }
 
+local icon = require("mudox.asset").image("layout.png")
+for _, item in pairs(chooserItems) do
+  item.image = icon
+end
+
 -- 〉
 
 -- Assemble module
