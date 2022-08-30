@@ -1,6 +1,8 @@
 -- vim: fdm=marker
 -- ! ORDER matters
 
+HS_CONFIG_DIR = "/Users/Mudox/Git/hs-config"
+
 -- Extensions to Lua language
 require("mudox.lua")
 
@@ -31,10 +33,12 @@ hs.window.animationDuration = 0
 require("mudox.alert")
 
 -- Root chooser
-alfred = require("mudox.rootchooser")
-bx.hyper("space", function()
-  alfred:show()
-end)
+
+-- As of macOS Sierra and later, if you want a hs.chooser object to appear above full-screen
+-- windows you must hide the Hammerspoon Dock icon first using: hs.dockicon.hide()
+hs.dockicon.hide()
+
+bx.hyper("space", require("mudox.rootchooser"))
 
 -- Hammerspoon Grid UI
 require("mudox.gridui")

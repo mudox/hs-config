@@ -1,10 +1,11 @@
-local cmd = os.getenv("HOME") .. "/Git/hs-config/script/bluetooth.sh"
+local img = require("mudox.asset").image
+local cmd = HS_CONFIG_DIR .. "/script/bluetooth.sh"
 local airpods = "38-ec-0d-58-93-7f"
-local keyboard = "40-e6-4b-8a-a2-b3"
+-- local keyboard = "40-e6-4b-8a-a2-b3"
 
 --- Toggle connection status
 -- @return 'connect' or 'disconnect'
-local function toggle(id)
+local function toggleDevice(id)
   local output = hs.execute(("sh %s toggle %s"):format(cmd, id))
   return output:gsub("%s*$", "", 1)
 end
@@ -16,61 +17,56 @@ local function status(id)
   return output:gsub("%s*$", "", 1)
 end
 
---- Build chooser items for given device
--- @return {toggle = , check =,}
-local function chooseItems(name, id)
-  local toggleItem = {
-    text = ("Toggle %s"):format(name),
-    subText = ("Connect / Disconnect %s"):format(name),
-    image = hs.image.imageFromName("NSBluetoothTemplate"),
+local function device(name, id)
+  local isConnected = function()
+    return status(id) == "connected"
+  end
 
-    action = function()
-      local s = toggle(id)
-      local msg
+  local function toggle()
+    local text
+    local subText
+    local image
 
-      if s == "connect" then
-        msg = ("Connecting %s"):format(name)
-      else
-        msg = ("Disconnecting %s"):format(name)
-      end
+    if isConnected() then
+      text = "Disconnect " .. name
+      subText = name .. " is connnected"
+      image = img("airpods-on.png")
+    else
+      text = "Connect " .. name
+      subText = name .. " is disconnnected"
+      image = img("airpods-off.png")
+    end
 
-      hs.alert(msg)
-    end,
-  }
+    return {
+      text = text,
+      subText = subText,
+      image = image,
 
-  local checkItem = {
-    text = ("Show %s Status"):format(name),
-    subText = ("Show if %s is connected or not"):format(name),
-    image = hs.image.imageFromName("NSBluetoothTemplate"),
+      action = function()
+        local s = toggleDevice(id)
+        local msg
 
-    action = function()
-      local s = status(id)
-      local msg
+        if s == "connect" then
+          msg = ("Connecting %s"):format(name)
+        else
+          msg = ("Disconnecting %s"):format(name)
+        end
 
-      if s == "connected" then
-        msg = ("%s Conncted"):format(name)
-      else
-        msg = ("%s Disconncted"):format(name)
-      end
+        hs.alert(msg)
+      end,
+    }
+  end
 
-      hs.alert(msg)
-    end,
-  }
-
-  return { toggle = toggleItem, check = checkItem }
+  return { toggle = toggle, isConnected = isConnected }
 end
 
 -- Module
 
-local airpodsItems = chooseItems("NBN AirPods", airpods)
-local keyboardItems = chooseItems("NBN Keyboard", keyboard)
+local airpodsItems = device("NBN AirPods", airpods)
+-- local keyboardItems = chooseItems("NBN Keyboard", keyboard)
 
 return {
   chooserItems = {
-    checkAirPods = airpodsItems.check,
     toggleAirPods = airpodsItems.toggle,
-
-    -- checkKeyboard = keyboardItems.check,
-    -- toggleKeyboard = keyboardItems.toggle,
   },
 }

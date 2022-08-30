@@ -6,55 +6,64 @@ hs.chooser.globalCallback = function(chooser, event)
   if event == "willOpen" then
     hs.closeConsole()
   end
+
+  hs.chooser._defaultGlobalCallback(event)
 end
 
 -- Module
 
 local actions = {}
-local m = hs.chooser.new(function(item)
-  if not item then
-    return
+
+local chooser = hs.chooser.new(function(item)
+  if item then
+    actions[item.id]()
   end
-  actions[item.id]()
 end)
 
-local function install(items)
+local function reinstall(items)
+  actions = {}
+
   for _, item in ipairs(items) do
     item.id = hs.host.uuid()
 
+    -- move `actdion` function to cache
     local action = item.action
+    assert(type(action) == "function")
     item.action = nil
-
     actions[item.id] = action
   end
 
-  m:choices(items)
+  chooser:choices(items)
 end
 
--- Install chooser items here!
-local chooserItems = {}
-local mods = {
-  "macos",
-  "bluetooth",
-  "layout",
-  "imageschooser",
-}
+local function collectItems()
+  local collectedItems = {}
 
-fx.each(mods, function(mod)
-  local dict = require("mudox." .. mod).chooserItems
-
-  local keys = pl.tablex.keys(dict)
-  local items = pl.tablex.values(dict)
-
-  log.f("%s -> %s", mod, keys)
-  assert(type(items) == "table" and #items > 0)
-
-  pl.tablex.insertvalues(chooserItems, items)
-end)
+  local mods = {
+    "macos",
+    "bluetooth",
+    "layout",
+    "imageschooser",
     "finder",
+  }
 
-install(chooserItems)
+  for _, mod in ipairs(mods) do
+    local clone = pl.tablex.deepcopy(require("mudox." .. mod).chooserItems)
+    for _, item in pairs(clone) do
+      if type(item) == "function" then
+        item = item()
+      end
+      table.insert(collectedItems, item)
+    end
+  end
 
-m:searchSubText(true):width(26)
+  return collectedItems
+end
 
-return m
+chooser:searchSubText(true):width(30):bgDark(true)
+
+return function()
+  reinstall(collectItems())
+  log.f("chooser show")
+  chooser:show()
+end
