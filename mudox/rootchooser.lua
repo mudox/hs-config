@@ -40,8 +40,9 @@ local function collectItems()
   local collectedItems = {}
 
   local mods = {
-    "macos",
     "bluetooth",
+    "task",
+    "macos",
     "layout",
     "imageschooser",
     "finder",
