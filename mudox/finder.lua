@@ -23,7 +23,7 @@ local xcodeDerivedData = {
 
 return {
   chooserItems = {
-    xcodeLibrary = xcodeLibrary,
-    xcodeDerivedData = xcodeDerivedData,
+    xcodeLibrary,
+    xcodeDerivedData,
   },
 }

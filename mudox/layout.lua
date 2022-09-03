@@ -146,7 +146,7 @@ local id = {
 }
 
 local chooserItems = {
-  g12_term_code = {
+  {
     text = "Layout: Kitty & Code",
     subText = "Browse info / man pages and edit in Visual Studio Code",
 
@@ -154,7 +154,7 @@ local chooserItems = {
       g12(id.kitty, id.vscode)
     end,
   },
-  g12_chrome_code = {
+  {
     text = "Layout: Chrome & Kitty",
     subText = "Browse web and run commands in terminal Kitty",
 
@@ -162,7 +162,7 @@ local chooserItems = {
       g12(id.chrome, id.kitty)
     end,
   },
-  g12_chrome_term = {
+  {
     text = "Layout: Chrome & Code",
     subText = "Browse web and edit in Visual Studio Code",
 
@@ -170,7 +170,7 @@ local chooserItems = {
       g12(id.chrome, id.vscode)
     end,
   },
-  g12_doc_code = {
+  {
     text = "Layout: Dash & Code",
     subText = "Browse doc and edit in VSCode",
 
@@ -178,7 +178,7 @@ local chooserItems = {
       g12(id.dash, id.vscode)
     end,
   },
-  g12_chrome_notion = {
+  {
     text = "Layout: Chrome & Notion",
     subText = "Browse web and take notes",
 
@@ -186,7 +186,7 @@ local chooserItems = {
       g12(id.chrome, id.notion)
     end,
   },
-  g12_kitty_notion = {
+  {
     text = "Layout: Kitty & Notion",
     subText = "Browse info page / man page and take notes",
 
@@ -194,7 +194,7 @@ local chooserItems = {
       g12(id.kitty, id.notion)
     end,
   },
-  g12_chrome_preview = {
+  {
     text = "Layout: Chrome & Preview",
     subText = "Browse web and read doc for comparing",
 
@@ -202,7 +202,7 @@ local chooserItems = {
       g12(id.chrome, id.preview)
     end,
   },
-  g12_preview_notion = {
+  {
     text = "Layout: Preview & Notion",
     subText = "Read and take notes",
 
@@ -210,7 +210,7 @@ local chooserItems = {
       g12(id.preview, id.notion)
     end,
   },
-  g12_xcode_dash = {
+  {
     text = "Layout: Xcode & Dash",
     subText = "Browse doc and edit in Xcode",
 
@@ -218,7 +218,7 @@ local chooserItems = {
       g12(id.xcode, id.dash)
     end,
   },
-  g12_dash_notion = {
+  {
     text = "Layout: Dash & Notion",
     subText = "Browse doc and take notes",
 

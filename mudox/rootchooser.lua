@@ -44,7 +44,6 @@ local function collectItems()
     "task",
     "macos",
     "layout",
-    "imageschooser",
     "finder",
   }
 

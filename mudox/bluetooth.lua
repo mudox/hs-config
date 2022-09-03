@@ -67,6 +67,6 @@ local airpodsItems = device("NBN AirPods", airpods)
 
 return {
   chooserItems = {
-    toggleAirPods = airpodsItems.toggle,
+    airpodsItems.toggle,
   },
 }
