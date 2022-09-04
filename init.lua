@@ -13,8 +13,12 @@ package:addRocksTree(rocksdir, "5.4")
 -- Globals
 bx = require("mudox.bind")
 fx = hs.fnutils
-d = hs.inspect
+
 pl = require("pl.import_into")()
+pt = pl.tablex
+pp = pl.path
+
+d = hs.inspect
 cls = hs.console.clearConsole
 
 -- Reload

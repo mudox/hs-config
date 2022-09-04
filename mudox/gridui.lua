@@ -8,6 +8,6 @@ g.ui.showExtraKeys = false
 
 g.setMargins { w = margin, h = margin }
 
-require("mudox.bind").altShift("3", function()
+bx.altShift("3", function()
   hs.grid.toggleShow(nil, true)
 end)

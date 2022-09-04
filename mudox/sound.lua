@@ -59,7 +59,7 @@ local function volumeDown()
   alertID = hs.alert(("Volume Down: %s"):format(round(vol)))
 end
 
-local bind = require("mudox.bind")
+local bind = bx
 
 bind.prefix("[", volumeDown, nil, volumeDown)
 bind.prefix("]", volumeUp, nil, volumeUp)

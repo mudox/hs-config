@@ -27,8 +27,8 @@ local function openXcodeProject(project)
 end
 
 local function open(path)
-  path = pl.path.expanduser(path)
-  if pl.path.exists(path) then
+  path = pp.expanduser(path)
+  if pp.exists(path) then
     os.execute(('open "%s"'):format(path))
   else
     hs.alert("File not exists")
@@ -38,7 +38,7 @@ end
 return {
   chooserItems = {
     {
-      text = "Book: 'Modern Concurrency in Swift'",
+      text = "Book: Modern Concurrency in Swift",
       subText = "Tags: swift, concurrency",
       image = img("open-book.png"),
       action = function()
@@ -46,7 +46,7 @@ return {
       end,
     },
     {
-      text = "Book: 'Server Side Swift with Vapor'",
+      text = "Book: Server Side Swift with Vapor",
       subText = "Tags: swift, concurrency, server",
       image = img("open-book.png"),
       action = function()

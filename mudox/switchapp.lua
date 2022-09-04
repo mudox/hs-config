@@ -3,7 +3,7 @@
 local log = hs.logger.new("switchapp")
 log.setLogLevel("debug")
 
-local bind = require("mudox.bind")
+local bind = bx
 local hyper = bind.mods.hyper
 local alt = bind.mods.alt
 local altShift = bind.mods.altShift

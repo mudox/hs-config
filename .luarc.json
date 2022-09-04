@@ -9,7 +9,9 @@
         "cls",
         "d",
         "fx",
-        "alfred"
+        "alfred",
+        "pt",
+        "pp"
     ],
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,
