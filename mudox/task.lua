@@ -66,24 +66,37 @@ chooserItems = fx.concat(chooserItems, pt.map(openXcodeProject, xcode_projects))
 
 local books = {
   {
-    text = "Book: Modern Concurrency in Swift",
-    subText = "Tags: swift, concurrency",
+    title = "Book: Modern Concurrency in Swift",
+    description = "Tags: swift, concurrency",
     image = img("open-book.png"),
-    action = function()
-      open("~/Downloads/Books/iOS/Modern Concurrency in Swift.pdf")
-    end,
+    path = "~/Downloads/Books/iOS/Modern Concurrency in Swift.pdf",
   },
   {
-    text = "Book: Server Side Swift with Vapor",
-    subText = "Tags: swift, concurrency, server",
+    title = "Book: Server Side Swift with Vapor",
+    description = "Tags: swift, concurrency, server",
     image = img("open-book.png"),
-    action = function()
-      open("~/Downloads/Books/iOS/Server Side Swift with Vapor 3rd Edition.pdf")
-    end,
+    path = "~/Downloads/Books/iOS/Server Side Swift with Vapor 3rd Edition.pdf",
+  },
+  {
+    title = "Book: Design Patterns",
+    description = "Tags: design pattern, object oriented programming",
+    image = img("open-book.png"),
+    path = "~/Downloads/Books/Design Patterns (GoF).pdf",
   },
 }
 
-chooserItems = fx.concat(chooserItems, books)
+function openBook(book)
+  return {
+    text = book.title,
+    subText = book.description,
+    image = book.image or img("open-book.png"),
+    action = function()
+      open(book.path)
+    end,
+  }
+end
+
+chooserItems = fx.concat(chooserItems, pt.map(openBook, books))
 
 -- 〉
 
