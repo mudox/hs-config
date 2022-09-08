@@ -1,5 +1,7 @@
 -- vim: fdm=marker fmr=〈,〉
 
+local log = hs.logger.new("task")
+
 local img = require("mudox.asset").image
 local ids = require("mudox.bundle").ids
 local xcodeIcon = hs.image.imageFromAppBundle(ids.xcode)
@@ -14,6 +16,7 @@ local function open(path)
     os.execute(('open "%s"'):format(path))
   else
     hs.alert("File not exists")
+    log.ef("Xcode project file not found in %s", path)
   end
 end
 
@@ -23,17 +26,17 @@ local function openXcodeProject(project)
     subText = project.description,
     image = xcodeIcon,
     action = function()
-      local appleDir = "~/Develop/Apple"
+      local projectDir = "~/Develop/Apple/" .. project.name
 
       local path
       if project.type == "spm" then
-        path = ("%s/Package.swift"):format(appleDir)
+        path = ("%s/Package.swift"):format(projectDir, project.name)
       elseif project.type == "xcworkspace" then
-        path = ("%s/%s.xcworkspace"):format(appleDir, project.name)
+        path = ("%s/%s.xcworkspace"):format(projectDir, project.name)
       elseif project.type == "xcodeproj" then
-        path = ("%s/%s.xcodeproj"):format(appleDir, project.name)
+        path = ("%s/%s.xcodeproj"):format(projectDir, project.name)
       elseif project.type == "playground" then
-        path = ("%s/%s.playground"):format(appleDir, project.name)
+        path = ("%s/%s.playground"):format(projectDir, project.name)
       end
 
       open(path)
@@ -43,14 +46,31 @@ end
 
 -- type: spm|playground|xcodeproj|xcworkspace
 local xcode_projects = {
+  -- Workspace projects
+  {
+    name = "HuiLong",
+    description = "UIKit warehouse",
+    type = "xcworkspace",
+  },
+  {
+    name = "XiuFeng",
+    description = "SwiftUI warehouse",
+    type = "xcworkspace",
+  },
+
   -- SPM projects
   {
-    name = "Gangxia",
+    name = "GangXia",
     description = "Vapor server",
     type = "spm",
   },
 
   -- Bare playgrounds
+  {
+    name = "Date",
+    description = "Tags: swift date locale formatter",
+    type = "playground",
+  },
   {
     name = "Concurrency",
     description = "Tags: swift concurrency async",
@@ -85,7 +105,7 @@ local books = {
   },
 }
 
-function openBook(book)
+local function openBook(book)
   return {
     text = book.title,
     subText = book.description,
