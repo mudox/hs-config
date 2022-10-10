@@ -14,6 +14,7 @@ local function open(path)
   path = pp.expanduser(path)
   if pp.exists(path) then
     os.execute(('open "%s"'):format(path))
+    hs.alert("Open " .. pl.path.basename(path))
   else
     hs.alert("File not exists")
     log.ef("Xcode project file not found in %s", path)
@@ -29,14 +30,18 @@ local function openXcodeProject(project)
       local projectDir = "~/Develop/Apple/" .. project.name
 
       local path
-      if project.type == "spm" then
-        path = ("%s/Package.swift"):format(projectDir, project.name)
-      elseif project.type == "xcworkspace" then
-        path = ("%s/%s.xcworkspace"):format(projectDir, project.name)
-      elseif project.type == "xcodeproj" then
-        path = ("%s/%s.xcodeproj"):format(projectDir, project.name)
-      elseif project.type == "playground" then
-        path = ("%s/%s.playground"):format(projectDir, project.name)
+      if project.path == nil then
+        if project.type == "spm" then
+          path = ("%s/Package.swift"):format(projectDir, project.name)
+        elseif project.type == "xcworkspace" then
+          path = ("%s/%s.xcworkspace"):format(projectDir, project.name)
+        elseif project.type == "xcodeproj" then
+          path = ("%s/%s.xcodeproj"):format(projectDir, project.name)
+        elseif project.type == "playground" then
+          path = ("%s/%s.playground"):format(projectDir, project.name)
+        end
+      else
+        path = project.path
       end
 
       open(path)
@@ -76,6 +81,16 @@ local xcode_projects = {
     description = "Tags: swift concurrency async",
     type = "playground",
   },
+  {
+    name = "Alamofire",
+    description = "Tags: swift network",
+    path = "/Volumes/Mudox SSD/Git/Alamofire/Alamofire.xcworkspace",
+  },
+  {
+    name = "Moya",
+    description = "Tags: swift network",
+    path = "/Volumes/Mudox SSD/Git/Moya/Moya.xcodeproj",
+  },
 }
 
 chooserItems = fx.concat(chooserItems, pt.map(openXcodeProject, xcode_projects))
@@ -102,6 +117,12 @@ local books = {
     description = "Tags: design pattern, object oriented programming",
     image = img("open-book.png"),
     path = "~/Downloads/Books/Design Patterns (GoF).pdf",
+  },
+  {
+    title = "Book: SwiftUI by Tutorials",
+    description = "Tags: ui swift swiftui app",
+    image = img("open-book.png"),
+    path = "~/Downloads/Books/iOS/SwiftUI by Tutorials 4th.pdf",
   },
 }
 
