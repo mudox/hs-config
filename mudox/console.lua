@@ -1,6 +1,6 @@
 local c = hs.console
 
-bx.altShift("x", hs.toggleConsole)
+bx.optShift("x", hs.toggleConsole)
 
 -- Console appearance
 c.toolbar(nil) -- remove toolbar

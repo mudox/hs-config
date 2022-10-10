@@ -1,43 +1,43 @@
-local alt = { "alt" }
-local altShift = { "alt", "shift" }
-local altCmd = { "alt", "cmd" }
+local opt = { "alt" }
+local optShift = { "alt", "shift" }
+local optCmd = { "alt", "cmd" }
 local ctrlCmd = { "ctrl", "cmd" }
-local ctrlAlt = { "ctrl", "alt" }
-local ctrlAltCmd = { "ctrl", "alt", "cmd" }
+local ctrlOpt = { "ctrl", "alt" }
+local ctrlOptCmd = { "ctrl", "alt", "cmd" }
 local hyper = { "ctrl", "alt", "cmd", "shift" }
 
 local M = {
   mods = {
-    alt = alt,
-    altShift = altShift,
-    altCmd = altCmd,
+    opt = opt,
+    optShift = optShift,
+    optCmd = optCmd,
     ctrlCmd = ctrlCmd,
-    ctrlAlt = ctrlAlt,
+    ctrlOpt = ctrlOpt,
     hyper = hyper,
   },
 
-  alt = function(key, to, ...)
-    hs.hotkey.bind(alt, key, to, ...)
+  opt = function(key, to, ...)
+    hs.hotkey.bind(opt, key, to, ...)
   end,
 
-  altShift = function(key, to, ...)
-    hs.hotkey.bind(altShift, key, to, ...)
+  optShift = function(key, to, ...)
+    hs.hotkey.bind(optShift, key, to, ...)
   end,
 
-  cmdAlt = function(key, to, ...)
-    hs.hotkey.bind(altCmd, key, to, ...)
+  cmdOpt = function(key, to, ...)
+    hs.hotkey.bind(optCmd, key, to, ...)
   end,
 
   ctrlCmd = function(key, to, ...)
     hs.hotkey.bind(ctrlCmd, key, to, ...)
   end,
 
-  ctrlAlt = function(key, to, ...)
-    hs.hotkey.bind(ctrlAlt, key, to, ...)
+  ctrlOpt = function(key, to, ...)
+    hs.hotkey.bind(ctrlOpt, key, to, ...)
   end,
 
-  ctrlAltCmd = function(key, to, ...)
-    hs.hotkey.bind(ctrlAltCmd, key, to, ...)
+  ctrlOptCmd = function(key, to, ...)
+    hs.hotkey.bind(ctrlOptCmd, key, to, ...)
   end,
 
   hyper = function(key, to, ...)
@@ -45,6 +45,6 @@ local M = {
   end,
 }
 
-M.prefix = M.ctrlAltCmd
+M.prefix = M.ctrlOptCmd
 
 return M

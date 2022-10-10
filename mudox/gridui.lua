@@ -8,6 +8,6 @@ g.ui.showExtraKeys = false
 
 g.setMargins { w = margin, h = margin }
 
-bx.altShift("3", function()
+bx.optShift("3", function()
   hs.grid.toggleShow(nil, true)
 end)
