@@ -1,6 +1,7 @@
 local img = require("mudox.asset").image
 local cmd = HS_CONFIG_DIR .. "/script/bluetooth.sh"
-local airpods = "38-ec-0d-58-93-7f"
+local airpods = "a4-c6-f0-e8-38-f1"
+
 -- local keyboard = "40-e6-4b-8a-a2-b3"
 
 --- Toggle connection status

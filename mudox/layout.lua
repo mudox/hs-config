@@ -3,7 +3,7 @@
 local log = hs.logger.new("layout")
 log.setLogLevel("debug")
 
-local prefix = bx.prefix
+local prefix = bx.hyper
 local cell = require("mudox.grid")
 
 -- Helpers 〈1
@@ -96,19 +96,19 @@ end
 prefix("=", form)
 
 -- Left
-prefix("h", function()
+prefix("[", function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 1)
 end)
 
 -- Right
-prefix("l", function()
+prefix("]", function()
   local win = hs.window.frontmostWindow()
   cell.grid12:moveTo(win, 1, 2)
 end)
 
 -- Fullscreen
-prefix("m", function()
+prefix("space", function()
   local win = hs.window.frontmostWindow()
   fullscreen(win)
 end)

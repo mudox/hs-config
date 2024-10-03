@@ -41,10 +41,10 @@ local function collectItems()
 
   local mods = {
     "bluetooth",
+    -- "macos",
     "task",
-    "macos",
-    "layout",
     "finder",
+    "layout",
   }
 
   for _, mod in ipairs(mods) do

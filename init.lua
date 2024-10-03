@@ -42,7 +42,7 @@ require("mudox.alert")
 -- windows you must hide the Hammerspoon Dock icon first using: hs.dockicon.hide()
 hs.dockicon.hide()
 
-bx.hyper("space", require("mudox.rootchooser"))
+bx.hyper("return", require("mudox.rootchooser"))
 
 -- Hammerspoon Grid UI
 require("mudox.gridui")
